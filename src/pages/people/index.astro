@@ -1,10 +1,10 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Section from "../components/Section.astro";
-import SectionHeading from "../components/SectionHeading.astro";
-import PersonCard from "../components/PersonCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import PersonCard from "../../components/PersonCard.astro";
 import { getCollection } from "astro:content";
-import { byOrder } from "../lib/site";
+import { byOrder } from "../../lib/site";
 
 const allPeople = (await getCollection("people")).sort(byOrder);
 
