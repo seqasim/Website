@@ -24,6 +24,17 @@ const publications = defineCollection({
   }),
 });
 
+const media = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/media" }),
+  schema: z.object({
+    title: z.string(),
+    outlet: z.string(),
+    link: z.string().url(),
+    year: z.number().optional(),
+    order: z.number().default(0),
+  }),
+});
+
 const people = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/people" }),
   schema: z.object({
@@ -60,6 +71,7 @@ const positions = defineCollection({
 export const collections = {
   research,
   publications,
+  media,
   people,
   news,
   positions,

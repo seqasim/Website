@@ -4,9 +4,10 @@ import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import PublicationItem from "../components/PublicationItem.astro";
 import { getCollection } from "astro:content";
-import { byYearDesc, siteConfig } from "../lib/site";
+import { byOrder, byYearDesc, siteConfig } from "../lib/site";
 
 const publications = (await getCollection("publications")).sort(byYearDesc);
+const mediaCoverage = (await getCollection("media")).sort(byOrder);
 
 const byYear = publications.reduce<Record<number, typeof publications>>(
   (acc, pub) => {
@@ -43,6 +44,36 @@ const years = Object.keys(byYear)
         View all publications on Google Scholar &rarr;
       </a>
     </p>
+
+    {
+      mediaCoverage.length > 0 && (
+        <div class="mb-16 rounded-xl border border-border bg-surface p-8">
+          <h3 class="font-display text-2xl font-semibold text-foreground">
+            Media coverage
+          </h3>
+          <ul class="mt-6 space-y-4">
+            {mediaCoverage.map((entry) => (
+              <li>
+                <a
+                  href={entry.data.link}
+                  class="font-medium text-foreground hover:text-accent"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {entry.data.title}
+                </a>
+                <span class="text-sm text-muted">
+                  {" "}
+                  — {entry.data.outlet}
+                  {entry.data.year ? `, ${entry.data.year}` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
     {
       years.map((year) => (
         <div class="mb-12">

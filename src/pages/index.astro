@@ -16,11 +16,7 @@ const allPublications = (await getCollection("publications")).sort(byYearDesc);
 const allNews = (await getCollection("news")).sort(byDateDesc);
 const allPeople = (await getCollection("people")).sort(byOrder);
 
-const featuredPublications = allPublications.filter((p) => p.data.featured).slice(0, 3);
-const recentPublications =
-  featuredPublications.length >= 3
-    ? featuredPublications
-    : allPublications.slice(0, 3);
+const recentPublications = allPublications.slice(0, 3);
 const latestNews = allNews.slice(0, 3);
 const pi = allPeople.find((p) => p.data.role === "PI");
 const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !== "PI").slice(0, 2);

@@ -23,6 +23,7 @@ This site is a static Astro site. All content lives in Markdown files under `src
 | Publications | `src/content/publications/` | No | `year` descending |
 | People | `src/content/people/` | No | `order` ascending, grouped by `role` |
 | News | `src/content/news/` | Yes | `date` descending |
+| Media coverage | `src/content/media/` | No | `order` ascending |
 | Positions | `src/content/positions/` | No | file order; `open: true` shown |
 
 ---
@@ -156,6 +157,29 @@ You can use **bold**, links, and lists.
 To remove: delete the file.
 
 To edit: change the frontmatter or body in place — no other files need updating.
+
+---
+
+## Add media coverage
+
+Media links appear in the **Media coverage** section on the Publications page (`/publications`).
+
+Create `src/content/media/<slug>.md`:
+
+```markdown
+---
+title: "Article headline"
+outlet: "New Scientist"
+link: "https://..."
+year: 2023
+order: 1
+---
+
+Optional note about which paper the coverage refers to.
+```
+
+- `order`: lower numbers appear first.
+- To remove: delete the file.
 
 ---
 
