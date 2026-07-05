@@ -1,7 +1,7 @@
 ---
-title: "PhD Student — Memory, Emotion, and Decision-Making"
+title: "PhD Student — Memory and Mental Health"
 type: "PhD"
-description: "We are seeking motivated PhD students to join our NIH-funded research on the computational and neural mechanisms linking decision-making and memory in humans. Experience with Python, neuroimaging, or computational modeling is a plus."
+description: "We are seeking motivated PhD students to study the neural computations that make memories sticky and how those processes go awry in memory loss and mental health disorders. Experience with Python, neuroimaging, or computational modeling is a plus."
 open: true
 ---
 

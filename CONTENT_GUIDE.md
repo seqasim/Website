@@ -21,8 +21,8 @@ Create a new `.md` file (filename becomes the URL slug):
 
 ```markdown
 ---
-title: "Memory and Decision-Making"
-summary: "How episodic memory guides choices in uncertain environments."
+title: "Memory Persistence and Mental Health"
+summary: "How the computations that make memories sticky can go awry in memory loss and psychiatric disorders."
 order: 1
 ---
 
@@ -82,7 +82,7 @@ Optional one-line abstract as the Markdown body.
 name: "Salman E. Qasim"
 role: "PI"
 photo: "/images/people/placeholder.svg"
-bio: "Principal Investigator. Studies how memory guides decision-making."
+bio: "Principal Investigator. Studies the mental computations that make memories sticky."
 email: "salman.qasim@rutgers.edu"
 order: 1
 alumni: false
@@ -132,7 +132,7 @@ Full news article body in Markdown.
 
 ```markdown
 ---
-title: "PhD Student — Memory and Decision-Making"
+title: "PhD Student — Memory and Mental Health"
 type: "PhD"
 description: "We are seeking a motivated PhD student to join our NIH-funded project."
 open: true

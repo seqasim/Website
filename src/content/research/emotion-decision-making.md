@@ -1,9 +1,9 @@
 ---
-title: "Emotion, Affect, and Decision-Making"
-summary: "Neural mechanisms linking emotional states, reward, and memory to guide human choices."
+title: "Memory Persistence and Mental Health"
+summary: "How the computations that make memories sticky can go awry in memory loss and psychiatric disorders."
 order: 3
 ---
 
-How do emotions influence what we remember and how we decide? We investigate the interaction between affect, reward prediction errors, and memory using direct-brain recordings during decision tasks.
+Why do some experiences become lasting memories while others fade? We investigate the mental computations — in entorhinal cortex, hippocampus, amygdala, and beyond — that encode, strengthen, and retrieve memories.
 
-Current projects examine grid-like representations of emotion space in entorhinal cortex, amygdala-hippocampal enhancement of emotional memory, and how positive affect modulates reward-driven learning — work supported by an NIH K99/R00 award on the computational and neural mechanisms linking decision-making and memory.
+When these mechanisms fail, the consequences range from memory loss to psychiatric illness. Current projects examine grid-like representations of emotion space, amygdala-hippocampal enhancement of emotional memory, and how affect modulates what we remember — with the goal of understanding memory stickiness in health and disease.

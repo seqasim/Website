@@ -7,7 +7,7 @@ export const siteConfig = {
   name: "Qasim Lab",
   title: "Qasim Lab | Rutgers University",
   description:
-    "We investigate biomarkers of complex cognitive function and dysfunction using direct-brain recordings in human neurosurgical patients, combining neural engineering, computational modeling, and statistical analysis.",
+    "We study the mental computations that make memories sticky — and how those processes go awry in memory loss and mental health disorders, using direct-brain recordings in human neurosurgical patients.",
   url: "https://seqasim.github.io/Website",
   institution: "Rutgers Robert Wood Johnson Medical School",
   contact: {
