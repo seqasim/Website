@@ -1,0 +1,65 @@
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+
+const research = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/research" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
+const publications = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/publications" }),
+  schema: z.object({
+    title: z.string(),
+    authors: z.array(z.string()),
+    journal: z.string(),
+    year: z.number(),
+    link: z.string().url().optional(),
+    featured: z.boolean().default(false),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+const people = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/people" }),
+  schema: z.object({
+    name: z.string(),
+    role: z.enum(["PI", "Postdoc", "PhD Student", "Alum"]),
+    photo: z.string().optional(),
+    bio: z.string(),
+    email: z.string().email().optional(),
+    order: z.number().default(0),
+    alumni: z.boolean().default(false),
+  }),
+});
+
+const news = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/news" }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    summary: z.string(),
+  }),
+});
+
+const positions = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/positions" }),
+  schema: z.object({
+    title: z.string(),
+    type: z.string(),
+    description: z.string(),
+    open: z.boolean().default(true),
+  }),
+});
+
+export const collections = {
+  research,
+  publications,
+  people,
+  news,
+  positions,
+};

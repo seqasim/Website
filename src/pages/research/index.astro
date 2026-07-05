@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ResearchCard from "../../components/ResearchCard.astro";
+import { getCollection } from "astro:content";
+import { byOrder } from "../../lib/site";
+
+const research = (await getCollection("research")).sort(byOrder);
+---
+
+<BaseLayout
+  title="Research | Qasim Lab"
+  description="Research areas in the Qasim Lab: memory-guided decision-making, intracranial recordings, computational modeling, and behavioral experiments."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="Research"
+      title="How does memory guide decision-making?"
+      intro="We study the neural and computational mechanisms linking memory to choice, using intracranial recordings, computational models, and behavioral experiments."
+    />
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        research.map((entry) => (
+          <ResearchCard
+            title={entry.data.title}
+            summary={entry.data.summary}
+            slug={entry.id}
+          />
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

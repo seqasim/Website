@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import { getCollection, render } from "astro:content";
+import { formatDate, withBase } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("news");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Qasim Lab`}
+  description={entry.data.summary}
+>
+  <Section>
+    <a
+      href={withBase("/news")}
+      class="mb-8 inline-block text-sm font-medium text-muted hover:text-accent"
+    >
+      &larr; Back to News
+    </a>
+    <time datetime={entry.data.date.toISOString()} class="text-sm text-muted">
+      {formatDate(entry.data.date)}
+    </time>
+    <h1 class="mt-2 font-display text-4xl font-semibold text-foreground md:text-5xl">
+      {entry.data.title}
+    </h1>
+    <div class="prose-content mt-10 max-w-3xl">
+      <Content />
+    </div>
+  </Section>
+</BaseLayout>

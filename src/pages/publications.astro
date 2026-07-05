@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+import { getCollection } from "astro:content";
+import { byYearDesc } from "../lib/site";
+
+const publications = (await getCollection("publications")).sort(byYearDesc);
+
+const byYear = publications.reduce<Record<number, typeof publications>>(
+  (acc, pub) => {
+    const year = pub.data.year;
+    if (!acc[year]) acc[year] = [];
+    acc[year].push(pub);
+    return acc;
+  },
+  {},
+);
+
+const years = Object.keys(byYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Publications | Qasim Lab"
+  description="Publications from the Qasim Lab on memory, decision-making, and intracranial neuroscience."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="Publications"
+      title="What have we published?"
+      intro="Peer-reviewed papers from the lab, grouped by year."
+    />
+    {
+      years.map((year) => (
+        <div class="mb-12">
+          <h3 class="mb-4 font-display text-2xl font-semibold text-foreground">
+            {year}
+          </h3>
+          <div>
+            {byYear[year].map((entry) => (
+              <PublicationItem
+                title={entry.data.title}
+                authors={entry.data.authors}
+                journal={entry.data.journal}
+                year={entry.data.year}
+                link={entry.data.link}
+              />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </Section>
+</BaseLayout>

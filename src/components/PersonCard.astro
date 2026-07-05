@@ -1,0 +1,39 @@
+---
+import Card from "./Card.astro";
+import { withBase } from "../lib/site";
+
+interface Props {
+  name: string;
+  role: string;
+  bio: string;
+  photo?: string;
+  email?: string;
+}
+
+const { name, role, bio, photo, email } = Astro.props;
+const photoSrc = photo ? withBase(photo) : undefined;
+---
+
+<Card class="text-center">
+  <div class="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full bg-surface">
+    {
+      photoSrc ? (
+        <img src={photoSrc} alt={`Photo of ${name}`} class="h-full w-full object-cover" />
+      ) : (
+        <div class="flex h-full w-full items-center justify-center text-2xl font-display text-muted" aria-hidden="true">
+          {name.charAt(0)}
+        </div>
+      )
+    }
+  </div>
+  <h3 class="font-display text-lg font-semibold text-foreground">{name}</h3>
+  <p class="mt-1 text-sm font-medium text-accent">{role}</p>
+  <p class="mt-3 text-sm leading-relaxed text-muted">{bio}</p>
+  {
+    email && (
+      <a href={`mailto:${email}`} class="mt-3 inline-block text-sm text-muted hover:text-accent">
+        {email}
+      </a>
+    )
+  }
+</Card>

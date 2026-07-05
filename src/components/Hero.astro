@@ -1,0 +1,40 @@
+---
+import Button from "./Button.astro";
+import Container from "./Container.astro";
+
+interface Props {
+  headline: string;
+  subheadline: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  ctaText = "Explore our Research",
+  ctaHref,
+} = Astro.props;
+---
+
+<section class="border-b border-border bg-surface py-24 md:py-32">
+  <Container>
+    <div class="max-w-3xl">
+      <h1
+        class="font-display text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl"
+      >
+        {headline}
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-muted md:text-xl">
+        {subheadline}
+      </p>
+      {
+        ctaHref && (
+          <div class="mt-10">
+            <Button href={ctaHref}>{ctaText}</Button>
+          </div>
+        )
+      }
+    </div>
+  </Container>
+</section>

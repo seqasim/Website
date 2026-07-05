@@ -1,0 +1,24 @@
+---
+import Card from "./Card.astro";
+import { withBase } from "../lib/site";
+
+interface Props {
+  title: string;
+  summary: string;
+  slug: string;
+}
+
+const { title, summary, slug } = Astro.props;
+---
+
+<Card class="group h-full">
+  <a href={withBase(`/research/${slug}`)} class="block h-full">
+    <h3 class="font-display text-xl font-semibold text-foreground group-hover:text-accent">
+      {title}
+    </h3>
+    <p class="mt-3 text-sm leading-relaxed text-muted">{summary}</p>
+    <span class="mt-4 inline-block text-sm font-medium text-accent">
+      Learn more &rarr;
+    </span>
+  </a>
+</Card>

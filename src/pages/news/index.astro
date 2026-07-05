@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { getCollection } from "astro:content";
+import { byDateDesc } from "../../lib/site";
+
+const news = (await getCollection("news")).sort(byDateDesc);
+---
+
+<BaseLayout
+  title="News | Qasim Lab"
+  description="News and updates from the Qasim Lab at Rutgers University."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="News"
+      title="What's happening in the lab?"
+      intro="Announcements, publications, and events."
+    />
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        news.map((entry) => (
+          <NewsCard
+            title={entry.data.title}
+            date={entry.data.date}
+            summary={entry.data.summary}
+            slug={entry.id}
+          />
+        ))
+      }
+    </div>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+import { siteConfig, withBase } from "../lib/site";
+---
+
+<BaseLayout
+  title="Contact | Qasim Lab"
+  description="Contact the Qasim Lab at Rutgers University."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="Contact"
+      title="How can you reach us?"
+      intro="We welcome inquiries about research, collaborations, and joining the lab."
+    />
+
+    <div class="grid gap-12 md:grid-cols-2">
+      <div>
+        <h3 class="font-display text-xl font-semibold text-foreground">
+          Principal Investigator
+        </h3>
+        <p class="mt-4 text-muted">
+          Salman E. Qasim, Ph.D.<br />
+          {siteConfig.institution}
+        </p>
+        <p class="mt-4">
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            class="text-accent hover:underline"
+          >
+            {siteConfig.contact.email}
+          </a>
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display text-xl font-semibold text-foreground">
+          Lab location
+        </h3>
+        <p class="mt-4 text-muted">
+          {siteConfig.contact.address}
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-display text-xl font-semibold text-foreground">
+          Connect
+        </h3>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a
+              href={siteConfig.contact.github}
+              class="text-muted hover:text-accent"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display text-xl font-semibold text-foreground">
+          Interested in joining?
+        </h3>
+        <p class="mt-4 text-muted">
+          See our open positions and learn how to apply.
+        </p>
+        <div class="mt-4">
+          <Button href={withBase("/join")}>
+            Join the lab
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

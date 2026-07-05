@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import PersonCard from "../components/PersonCard.astro";
+import { getCollection } from "astro:content";
+import { byOrder } from "../lib/site";
+
+const allPeople = (await getCollection("people")).sort(byOrder);
+
+const roleGroups = [
+  { label: "Principal Investigator", roles: ["PI"] as const },
+  { label: "Postdoctoral Fellows", roles: ["Postdoc"] as const },
+  { label: "Graduate Students", roles: ["PhD Student"] as const },
+  { label: "Alumni", roles: ["Alum"] as const, alumni: true },
+];
+
+function getPeopleForGroup(roles: readonly string[], alumni?: boolean) {
+  return allPeople.filter((p) => {
+    if (alumni) return p.data.alumni || p.data.role === "Alum";
+    return roles.includes(p.data.role) && !p.data.alumni;
+  });
+}
+---
+
+<BaseLayout
+  title="People | Qasim Lab"
+  description="Meet the researchers at the Qasim Lab — faculty, postdocs, students, and alumni."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="People"
+      title="Who is in the lab?"
+      intro="Researchers studying how memory guides decision-making at Rutgers University."
+    />
+    {
+      roleGroups.map((group) => {
+        const members = getPeopleForGroup(group.roles, group.alumni);
+        if (members.length === 0) return null;
+        return (
+          <div class="mb-16">
+            <h3 class="mb-6 font-display text-2xl font-semibold text-foreground">
+              {group.label}
+            </h3>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {members.map((entry) => (
+                <PersonCard
+                  name={entry.data.name}
+                  role={entry.data.role}
+                  bio={entry.data.bio}
+                  photo={entry.data.photo}
+                  email={entry.data.email}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </Section>
+</BaseLayout>

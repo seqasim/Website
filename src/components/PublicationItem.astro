@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  authors: string[];
+  journal: string;
+  year: number;
+  link?: string;
+}
+
+const { title, authors, journal, year, link } = Astro.props;
+---
+
+<article class="border-b border-border py-6 last:border-b-0">
+  <h3 class="font-display text-lg font-semibold text-foreground">
+    {
+      link ? (
+        <a href={link} target="_blank" rel="noopener noreferrer" class="hover:text-accent">
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }
+  </h3>
+  <p class="mt-1 text-sm text-muted">{authors.join(", ")}</p>
+  <p class="mt-1 text-sm text-muted">
+    <em>{journal}</em>, {year}
+  </p>
+</article>

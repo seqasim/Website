@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "../lib/site";
+
+const positions = await getCollection("positions");
+const openPositions = positions.filter((p) => p.data.open);
+---
+
+<BaseLayout
+  title="Join the Lab | Qasim Lab"
+  description="Open positions and how to apply to join the Qasim Lab at Rutgers University."
+>
+  <Section>
+    <SectionHeading
+      eyebrow="Join"
+      title="Want to join the lab?"
+      intro="We are a collaborative team studying how memory guides decision-making. We value curiosity, rigor, and openness."
+    />
+
+    <div class="prose-content mb-16 max-w-3xl">
+      <p>
+        The Qasim Lab combines intracranial electrophysiology, computational
+        modeling, and behavioral experiments to understand human cognition. We
+        welcome researchers from diverse backgrounds including neuroscience,
+        psychology, computer science, and engineering.
+      </p>
+      <p>
+        Graduate students typically apply through the Rutgers Psychology PhD
+        program or the Rutgers-Newark Behavioral and Neural Sciences program.
+        Postdoctoral candidates should email a CV and cover letter directly to
+        the PI.
+      </p>
+    </div>
+
+    <h3 class="mb-6 font-display text-2xl font-semibold text-foreground">
+      Open positions
+    </h3>
+
+    {
+      openPositions.length > 0 ? (
+        <div class="grid gap-6 md:grid-cols-2">
+          {openPositions.map((entry) => (
+            <Card>
+              <span class="text-sm font-medium text-accent">{entry.data.type}</span>
+              <h4 class="mt-2 font-display text-xl font-semibold text-foreground">
+                {entry.data.title}
+              </h4>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                {entry.data.description}
+              </p>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <p class="text-muted">
+          We do not have open positions at this time, but we encourage
+          prospective students to apply through Rutgers graduate programs.
+        </p>
+      )
+    }
+
+    <div class="mt-12 rounded-xl border border-border bg-surface p-8">
+      <h3 class="font-display text-xl font-semibold text-foreground">
+        How to apply
+      </h3>
+      <ul class="mt-4 space-y-2 text-muted">
+        <li>
+          <strong class="text-foreground">PhD students:</strong> Apply through the
+          Rutgers graduate program and mention the Qasim Lab in your statement.
+        </li>
+        <li>
+          <strong class="text-foreground">Postdocs:</strong> Email{" "}
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            class="text-accent hover:underline"
+          >
+            {siteConfig.contact.email}
+          </a>{" "}
+          with your CV and a brief cover letter.
+        </li>
+        <li>
+          <strong class="text-foreground">Undergraduates:</strong> Contact us about
+          research opportunities during the academic year or summer.
+        </li>
+      </ul>
+      <div class="mt-6">
+        <Button href={`mailto:${siteConfig.contact.email}`}>
+          Get in touch
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

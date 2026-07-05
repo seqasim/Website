@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ResearchCard from "../components/ResearchCard.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+import NewsCard from "../components/NewsCard.astro";
+import PersonCard from "../components/PersonCard.astro";
+import Button from "../components/Button.astro";
+import { getCollection } from "astro:content";
+import { byOrder, byDateDesc, byYearDesc, withBase } from "../lib/site";
+
+const allResearch = (await getCollection("research")).sort(byOrder);
+const allPublications = (await getCollection("publications")).sort(byYearDesc);
+const allNews = (await getCollection("news")).sort(byDateDesc);
+const allPeople = (await getCollection("people")).sort(byOrder);
+
+const featuredPublications = allPublications.filter((p) => p.data.featured).slice(0, 3);
+const recentPublications =
+  featuredPublications.length >= 3
+    ? featuredPublications
+    : allPublications.slice(0, 3);
+const latestNews = allNews.slice(0, 3);
+const pi = allPeople.find((p) => p.data.role === "PI");
+const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !== "PI").slice(0, 2);
+---
+
+<BaseLayout>
+  <Hero
+    headline="Understanding how memory guides decision-making."
+    subheadline="We combine intracranial recordings, computational modeling, and behavioral experiments to understand how the human brain learns from experience."
+    ctaText="Explore our Research"
+    ctaHref={withBase("/research")}
+  />
+
+  <Section>
+    <SectionHeading
+      eyebrow="Research"
+      title="What we study"
+      intro="Our lab investigates the neural and computational mechanisms by which memory shapes the decisions we make."
+    />
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        allResearch.map((entry) => (
+          <ResearchCard
+            title={entry.data.title}
+            summary={entry.data.summary}
+            slug={entry.id}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-8">
+      <Button href={withBase("/research")} variant="secondary">
+        View all research areas
+      </Button>
+    </div>
+  </Section>
+
+  <Section class="bg-surface">
+    <SectionHeading
+      eyebrow="Publications"
+      title="Recent publications"
+      intro="Selected papers from the lab."
+    />
+    <div>
+      {
+        recentPublications.map((entry) => (
+          <PublicationItem
+            title={entry.data.title}
+            authors={entry.data.authors}
+            journal={entry.data.journal}
+            year={entry.data.year}
+            link={entry.data.link}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-8">
+      <Button href={withBase("/publications")} variant="secondary">
+        View all publications
+      </Button>
+    </div>
+  </Section>
+
+  <Section>
+    <SectionHeading
+      eyebrow="News"
+      title="Latest news"
+      intro="Updates from the lab."
+    />
+    <div class="grid gap-6 md:grid-cols-3">
+      {
+        latestNews.map((entry) => (
+          <NewsCard
+            title={entry.data.title}
+            date={entry.data.date}
+            summary={entry.data.summary}
+            slug={entry.id}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-8">
+      <Button href={withBase("/news")} variant="secondary">
+        View all news
+      </Button>
+    </div>
+  </Section>
+
+  <Section class="bg-surface">
+    <SectionHeading
+      eyebrow="People"
+      title="Meet the lab"
+      intro="Researchers studying memory and decision-making at Rutgers."
+    />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pi && (
+          <PersonCard
+            name={pi.data.name}
+            role={pi.data.role}
+            bio={pi.data.bio}
+            photo={pi.data.photo}
+            email={pi.data.email}
+          />
+        )
+      }
+      {
+        featuredPeople.map((entry) => (
+          <PersonCard
+            name={entry.data.name}
+            role={entry.data.role}
+            bio={entry.data.bio}
+            photo={entry.data.photo}
+            email={entry.data.email}
+          />
+        ))
+      }
+    </div>
+    <div class="mt-8">
+      <Button href={withBase("/people")} variant="secondary">
+        View all people
+      </Button>
+    </div>
+  </Section>
+
+  <Section>
+    <div class="rounded-xl border border-border bg-surface p-8 md:p-12">
+      <h2 class="font-display text-3xl font-semibold text-foreground">
+        Join the lab
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg text-muted">
+        We are always looking for curious, motivated researchers to join our team.
+        Explore open positions and learn how to apply.
+      </p>
+      <div class="mt-8">
+        <Button href={withBase("/join")}>See open positions</Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>
