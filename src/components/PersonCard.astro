@@ -7,10 +7,11 @@ interface Props {
   role: string;
   bio: string;
   photo?: string;
+  photoPosition?: string;
   email?: string;
 }
 
-const { name, role, bio, photo, email } = Astro.props;
+const { name, role, bio, photo, photoPosition = "center center", email } = Astro.props;
 const photoSrc = photo ? withBase(photo) : undefined;
 ---
 
@@ -18,7 +19,12 @@ const photoSrc = photo ? withBase(photo) : undefined;
   <div class="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full bg-surface">
     {
       photoSrc ? (
-        <img src={photoSrc} alt={`Photo of ${name}`} class="h-full w-full object-cover" />
+        <img
+          src={photoSrc}
+          alt={`Photo of ${name}`}
+          class="h-full w-full object-cover"
+          style={`object-position: ${photoPosition}`}
+        />
       ) : (
         <div class="flex h-full w-full items-center justify-center text-2xl font-display text-muted" aria-hidden="true">
           {name.charAt(0)}

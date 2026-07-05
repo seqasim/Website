@@ -30,6 +30,7 @@ const people = defineCollection({
     name: z.string(),
     role: z.enum(["PI", "Postdoc", "PhD Student", "Undergraduate", "Staff", "Alum"]),
     photo: z.string().optional(),
+    photoPosition: z.string().optional(),
     bio: z.string(),
     email: z.string().email().optional(),
     order: z.number().default(0),

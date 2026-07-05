@@ -1,12 +1,15 @@
 ---
 import Button from "./Button.astro";
 import Container from "./Container.astro";
+import { withBase } from "../lib/site";
 
 interface Props {
   headline: string;
   subheadline: string;
   ctaText?: string;
   ctaHref?: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 const {
@@ -14,24 +17,43 @@ const {
   subheadline,
   ctaText = "Explore our Research",
   ctaHref,
+  image,
+  imageAlt = "",
 } = Astro.props;
+
+const imageSrc = image ? withBase(image) : undefined;
 ---
 
 <section class="border-b border-border bg-surface py-24 md:py-32">
   <Container>
-    <div class="max-w-3xl">
-      <h1
-        class="font-display text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl"
-      >
-        {headline}
-      </h1>
-      <p class="mt-6 text-lg leading-relaxed text-muted md:text-xl">
-        {subheadline}
-      </p>
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="max-w-3xl">
+        <h1
+          class="font-display text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl"
+        >
+          {headline}
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-muted md:text-xl">
+          {subheadline}
+        </p>
+        {
+          ctaHref && (
+            <div class="mt-10">
+              <Button href={ctaHref}>{ctaText}</Button>
+            </div>
+          )
+        }
+      </div>
       {
-        ctaHref && (
-          <div class="mt-10">
-            <Button href={ctaHref}>{ctaText}</Button>
+        imageSrc && (
+          <div class="mx-auto w-full max-w-sm lg:max-w-md">
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              class="mx-auto max-h-[min(32rem,70vh)] w-full rounded-xl object-cover object-center shadow-sm"
+              width="1280"
+              height="1590"
+            />
           </div>
         )
       }

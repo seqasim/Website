@@ -8,7 +8,9 @@ import { getCollection } from "astro:content";
 import { siteConfig } from "../lib/site";
 
 const positions = await getCollection("positions");
-const openPositions = positions.filter((p) => p.data.open);
+const openPositions = positions
+  .filter((p) => p.data.open)
+  .filter((p) => p.data.type !== "Postdoc");
 ---
 
 <BaseLayout
@@ -30,11 +32,11 @@ const openPositions = positions.filter((p) => p.data.open);
         retrieved — and what goes wrong when those mechanisms fail.
       </p>
       <p>
-        We welcome researchers from diverse backgrounds including neuroscience,
-        psychology, computer science, and engineering. Graduate students
-        typically apply through Rutgers graduate programs in Neuroscience or
-        Psychology. Postdoctoral candidates should email a CV and cover letter
-        directly to the PI.
+        We welcome undergraduates and PhD candidates from diverse backgrounds
+        including neuroscience, psychology, computer science, and engineering.
+        PhD students typically apply through Rutgers graduate programs in
+        Neuroscience or Psychology. Undergraduates should email the PI with a
+        CV and statement of interest.
       </p>
     </div>
 
@@ -71,22 +73,18 @@ const openPositions = positions.filter((p) => p.data.open);
       </h3>
       <ul class="mt-4 space-y-2 text-muted">
         <li>
-          <strong class="text-foreground">PhD students:</strong> Apply through the
+          <strong class="text-foreground">PhD candidates:</strong> Apply through the
           Rutgers graduate program and mention the Qasim Lab in your statement.
         </li>
         <li>
-          <strong class="text-foreground">Postdocs:</strong> Email{" "}
+          <strong class="text-foreground">Undergraduates:</strong> Email{" "}
           <a
             href={`mailto:${siteConfig.contact.email}`}
             class="text-accent hover:underline"
           >
             {siteConfig.contact.email}
           </a>{" "}
-          with your CV and a brief cover letter.
-        </li>
-        <li>
-          <strong class="text-foreground">Undergraduates:</strong> Contact us about
-          research opportunities during the academic year or summer.
+          with your CV and a brief statement of interest.
         </li>
       </ul>
       <div class="mt-6">

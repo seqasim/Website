@@ -1,6 +1,6 @@
 ---
 name: updating-qasim-lab-site
-description: Add, edit, or remove Qasim Lab website content — research areas, publications, lab members (including moving members to alumni), news posts, and job postings. Use when updating this Astro site's Markdown content, when the user mentions adding a paper/person/news/position, or when moving a lab member to Alumni.
+description: Add, edit, or remove Qasim Lab website content — research areas, publications, lab members (including moving members to alumni), news posts, and job postings. Use when updating this Astro site's Markdown content, when the user mentions adding a paper, person, news item, announcement, or position, or when moving a lab member to Alumni.
 ---
 
 # Updating the Qasim Lab Website
@@ -100,6 +100,7 @@ alumni: false
 Field rules:
 - `role`: must be one of `PI`, `Postdoc`, `PhD Student`, `Undergraduate`, `Staff`, `Alum`. To add a new role, first add it to the `role` enum in `src/content.config.ts` and to `roleGroups` in `src/pages/people/index.astro`.
 - `photo`: optional. Put the image in `public/images/people/` and reference it as `/images/people/<file>` (leading slash, no `/Website`). If omitted, a placeholder initial is shown.
+- `photoPosition`: optional CSS `object-position` for cropping adjustments, e.g. `"center 35%"` if the top of the head is cut off. Default is `"center center"`.
 - `email`: optional; omit the line if none.
 - `order`: controls order within the person's role group.
 
@@ -121,21 +122,40 @@ Anyone with `alumni: true` (or `role: "Alum"`) appears in the Alumni section on 
 
 ## Add a news post
 
-Create `src/content/news/<slug>.md`:
+News posts appear on the **News** page (`/news`) and the **3 most recent** automatically show on the homepage.
+
+**Step 1:** Pick a filename slug (kebab-case, becomes the URL). Example: `lab-presentation-sfn-2026.md` → `/news/lab-presentation-sfn-2026`.
+
+**Step 2:** Create `src/content/news/<slug>.md`:
 
 ```markdown
 ---
-title: "Headline"
+title: "Headline shown on the page and cards"
 date: 2026-07-05
 summary: "One-sentence excerpt for cards and previews."
 ---
 
-Full post body in Markdown. Renders at /news/<slug>.
+Full post body in Markdown. One or two short paragraphs is enough.
+You can use **bold**, links, and lists.
 ```
 
-- `date`: `YYYY-MM-DD`. Sorting is newest-first; the 3 latest show on the homepage.
+**Field rules:**
+- `title`: headline (required).
+- `date`: `YYYY-MM-DD` format (required). Posts sort newest-first.
+- `summary`: short teaser for cards on `/news` and the homepage (required).
+- Body: optional Markdown for the detail page.
+
+**Step 3:** Run `npm run build` to verify, then commit and push.
+
+**Examples of good news posts:**
+- New paper published
+- Grant or award received
+- New lab member joined
+- Upcoming talk or conference presentation
 
 To remove: delete the file.
+
+To edit: change the frontmatter or body in place — no other files need updating.
 
 ---
 
@@ -154,7 +174,7 @@ open: true
 Optional Markdown body with application details.
 ```
 
-- `type`: free text, e.g. `PhD`, `Postdoc`, `Research Assistant`, `Undergraduate`.
+- `type`: free text, e.g. `PhD`, `Undergraduate`, `Research Assistant`. **Postdoc positions are currently hidden from the Join page** even if `open: true` — set `open: false` or omit postdoc postings until the lab is hiring.
 - `open: true` shows the posting on the Join page. Set `open: false` to hide it without deleting.
 
 To remove: delete the file.
