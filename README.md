@@ -21,12 +21,13 @@ npm run preview
 
 ## Deployment
 
-Pushes to `main` deploy automatically via GitHub Actions.
+Pushes to `master` deploy automatically via GitHub Actions.
 
 **First-time setup:**
 1. Push to `github.com/seqasim/Website`
-2. Repo **Settings → Pages → Source** → select **GitHub Actions**
-3. Push to `main`
+2. Go to repo **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**
+3. Push to `master` (or run the "Deploy to GitHub Pages" workflow manually from the Actions tab)
+4. After the workflow completes, visit https://seqasim.github.io/Website
 
 ## Switching to a Custom Domain
 
