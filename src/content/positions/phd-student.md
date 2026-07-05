@@ -1,8 +1,8 @@
 ---
-title: "PhD Student — Memory and Decision-Making"
+title: "PhD Student — Memory, Emotion, and Decision-Making"
 type: "PhD"
-description: "We are seeking a motivated PhD student to join our NIH-funded project on memory-guided decision-making. Experience with Python, neuroimaging, or computational modeling is a plus."
+description: "We are seeking motivated PhD students to join our NIH-funded research on the computational and neural mechanisms linking decision-making and memory in humans. Experience with Python, neuroimaging, or computational modeling is a plus."
 open: true
 ---
 
-The successful candidate will work on intracranial EEG recordings from patients performing decision tasks, with opportunities to develop computational models and behavioral paradigms. Apply through the Rutgers Psychology PhD program and mention the Qasim Lab in your application.
+The successful candidate will work with intracranial EEG and single-neuron recordings from patients performing cognitive tasks. Apply through the Rutgers graduate program in Neuroscience or Psychology and mention the Qasim Lab in your application.

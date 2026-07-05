@@ -7,13 +7,16 @@ export const siteConfig = {
   name: "Qasim Lab",
   title: "Qasim Lab | Rutgers University",
   description:
-    "We combine intracranial recordings, computational modeling, and behavioral experiments to understand how the human brain learns from experience.",
+    "We investigate biomarkers of complex cognitive function and dysfunction using direct-brain recordings in human neurosurgical patients, combining neural engineering, computational modeling, and statistical analysis.",
   url: "https://seqasim.github.io/Website",
-  institution: "Rutgers University",
+  institution: "Rutgers Robert Wood Johnson Medical School",
   contact: {
     email: "salman.qasim@rutgers.edu",
-    address: "Rutgers University — New Brunswick, NJ",
+    address: "Department of Neurosurgery, Rutgers Robert Wood Johnson Medical School, New Brunswick, NJ",
     github: "https://github.com/seqasim",
+    twitter: "https://x.com/QasimEtal",
+    scholar: "https://scholar.google.com/citations?user=STCkJC4AAAAJ",
+    labSite: "https://sites.rutgers.edu/qasim-lab/",
   },
 } as const;
 

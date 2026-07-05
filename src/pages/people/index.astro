@@ -12,6 +12,8 @@ const roleGroups = [
   { label: "Principal Investigator", roles: ["PI"] as const },
   { label: "Postdoctoral Fellows", roles: ["Postdoc"] as const },
   { label: "Graduate Students", roles: ["PhD Student"] as const },
+  { label: "Undergraduate Researchers", roles: ["Undergraduate"] as const },
+  { label: "Staff", roles: ["Staff"] as const },
   { label: "Alumni", roles: ["Alum"] as const, alumni: true },
 ];
 
@@ -31,7 +33,7 @@ function getPeopleForGroup(roles: readonly string[], alumni?: boolean) {
     <SectionHeading
       eyebrow="People"
       title="Who is in the lab?"
-      intro="Researchers studying how memory guides decision-making at Rutgers University."
+      intro="Researchers studying human cognition with direct-brain recordings at Rutgers Robert Wood Johnson Medical School."
     />
     {
       roleGroups.map((group) => {
