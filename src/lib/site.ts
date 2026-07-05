@@ -31,8 +31,8 @@ export const navLinks = [
 
 /** Build a URL that respects Astro's base path (e.g. /Website). */
 export function withBase(path: string): string {
-  const base = import.meta.env.BASE_URL;
-  const normalized = path.startsWith("/") ? path.slice(1) : path;
+  const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+  const normalized = path.replace(/^\//, "");
   return `${base}${normalized}`;
 }
 
