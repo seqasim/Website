@@ -2,13 +2,13 @@
 
 Modern static website for the Qasim Lab at Rutgers University.
 
-**Live site:** https://seqasim.github.io/Website
+**Live site:** https://qasimlab.rutgers.edu
 
 ## Quick Start
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/Website
+npm run dev      # http://localhost:4321
 npm run build
 npm run preview
 ```
@@ -21,20 +21,15 @@ npm run preview
 
 ## Deployment
 
-Pushes to `master` deploy automatically via GitHub Actions.
+Pushes to `master` deploy automatically via GitHub Actions to GitHub Pages, served at the Rutgers custom domain.
 
-**First-time setup:**
-1. Push to `github.com/seqasim/Website`
-2. Go to repo **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**
-3. Push to `master` (or run the "Deploy to GitHub Pages" workflow manually from the Actions tab)
-4. After the workflow completes, visit https://seqasim.github.io/Website
+**Settings checklist:**
+1. Repo **Settings → Pages → Source** = **GitHub Actions**
+2. Custom domain = `qasimlab.rutgers.edu` (matches `public/CNAME`)
+3. Prefer enabling **Enforce HTTPS** once the certificate is ready
 
-## Switching to a Custom Domain
-
-If Rutgers IT provides a subdomain (e.g. `qasimlab.rutgers.edu`):
-
-1. Create `public/CNAME` with the domain name
-2. Remove `base: "/Website"` from `astro.config.mjs`
-3. Update `site` to the new domain
-4. Ask Rutgers IT for a DNS `CNAME` record → `seqasim.github.io`
-5. Enter the custom domain in GitHub repo Settings → Pages
+**Astro config for the custom domain:**
+```js
+site: "https://qasimlab.rutgers.edu"
+# no base path — custom domains are served from /
+```

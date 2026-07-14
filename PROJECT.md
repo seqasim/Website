@@ -6,7 +6,7 @@ This document is the source of truth for how the site is built, organized, and d
 
 A minimal, editorial, science-forward static website for the Qasim Lab at Rutgers University. Content is authored in Markdown; the site is built with Astro and deployed to GitHub Pages.
 
-**Live URL (current):** https://seqasim.github.io/Website
+**Live URL (current):** https://qasimlab.rutgers.edu
 
 ## Tech Stack
 
@@ -64,39 +64,24 @@ Website/
 
 ```bash
 npm install
-npm run dev        # http://localhost:4321/Website
+npm run dev        # http://localhost:4321
 npm run build      # Output to dist/
 npm run preview    # Preview production build
 ```
 
 ## Deployment
 
-The site deploys automatically on push to `main` via GitHub Actions.
+The site deploys automatically on push to `master` via GitHub Actions, and is served at the Rutgers custom domain.
 
-**First-time setup:**
-1. Push this repo to `github.com/seqasim/Website`
-2. Go to repo **Settings → Pages → Source** and select **GitHub Actions**
-3. Push to `main` — the workflow builds and deploys
-
-**Astro config for GitHub Pages project page:**
+**Astro config for custom domain (root path):**
 ```js
-site: "https://seqasim.github.io"
-base: "/Website"
+site: "https://qasimlab.rutgers.edu"
+# no base — custom domains serve at /
 ```
 
-All internal links use the `withBase()` helper from `src/lib/site.ts` to respect the base path.
+`public/CNAME` contains `qasimlab.rutgers.edu`. All internal links use `withBase()` from `src/lib/site.ts`, which resolves to `/` when no base path is set.
 
-## Switching to a Custom Domain Later
-
-If Rutgers IT provides a subdomain (e.g. `qasimlab.rutgers.edu`):
-
-1. Add `public/CNAME` containing the domain name
-2. Remove `base: "/Website"` from `astro.config.mjs`
-3. Update `site` to the new domain
-4. Ask Rutgers IT to add a DNS `CNAME` record pointing to `seqasim.github.io`
-5. In GitHub repo Settings → Pages, enter the custom domain
-
-No code changes needed beyond config — `withBase()` will resolve to `/` when base is removed.
+**Important:** Do not re-add `base: "/Website"`. That causes CSS/JS to load from `/Website/_astro/...`, which 404s on the custom domain and breaks all styling.
 
 ## Adding Content
 

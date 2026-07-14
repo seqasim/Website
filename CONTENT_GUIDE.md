@@ -9,7 +9,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:4321/Website in your browser. Changes to Markdown files reload automatically.
+Open http://localhost:4321 in your browser. Changes to Markdown files reload automatically.
 
 ---
 

@@ -5,8 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://seqasim.github.io",
-  base: "/Website",
+  site: "https://qasimlab.rutgers.edu",
+  // Custom domain serves at the root — do not set base to /Website
   output: "static",
   integrations: [sitemap()],
   vite: {

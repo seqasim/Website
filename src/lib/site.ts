@@ -8,7 +8,7 @@ export const siteConfig = {
   title: "Qasim Lab | Rutgers University",
   description:
     "We study the mental computations that make memories sticky — and how those processes go awry in memory loss and mental health disorders, using direct-brain recordings in human neurosurgical patients.",
-  url: "https://seqasim.github.io/Website",
+  url: "https://qasimlab.rutgers.edu",
   institution: "Rutgers Robert Wood Johnson Medical School",
   contact: {
     email: "salman.qasim@rutgers.edu",
@@ -29,7 +29,7 @@ export const navLinks = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-/** Build a URL that respects Astro's base path (e.g. /Website). */
+/** Build a URL that respects Astro's base path (root `/` on custom domain). */
 export function withBase(path: string): string {
   const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
   const normalized = path.replace(/^\//, "");

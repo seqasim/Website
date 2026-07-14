@@ -100,7 +100,7 @@ alumni: false
 
 Field rules:
 - `role`: must be one of `PI`, `Postdoc`, `PhD Student`, `Undergraduate`, `Staff`, `Alum`. To add a new role, first add it to the `role` enum in `src/content.config.ts` and to `roleGroups` in `src/pages/people/index.astro`.
-- `photo`: optional. Put the image in `public/images/people/` and reference it as `/images/people/<file>` (leading slash, no `/Website`). If omitted, a placeholder initial is shown.
+- `photo`: optional. Put the image in `public/images/people/` and reference it as `/images/people/<file>` (leading slash). If omitted, a placeholder initial is shown.
 - `photoPosition`: optional CSS `object-position` for cropping adjustments, e.g. `"center 35%"` if the top of the head is cut off. Default is `"center center"`.
 - `email`: optional; omit the line if none.
 - `order`: controls order within the person's role group.
@@ -216,7 +216,7 @@ npm run build # must succeed with no errors
 
 If the build fails, fix the reported file (usually a schema mismatch) before continuing.
 
-To publish: commit and push to `master`. GitHub Actions builds and deploys to https://seqasim.github.io/Website automatically. Only commit/push when the user asks.
+To publish: commit and push to `master`. GitHub Actions builds and deploys to https://qasimlab.rutgers.edu automatically. Only commit/push when the user asks.
 
 Use a clear commit message, e.g.:
 
