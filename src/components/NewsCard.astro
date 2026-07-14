@@ -1,23 +1,19 @@
 ---
 import Card from "./Card.astro";
-import { formatDate, withBase } from "../lib/site";
+import { withBase } from "../lib/site";
 
 interface Props {
   title: string;
-  date: Date;
   summary: string;
   slug: string;
 }
 
-const { title, date, summary, slug } = Astro.props;
+const { title, summary, slug } = Astro.props;
 ---
 
 <Card class="group h-full">
   <a href={withBase(`/news/${slug}`)} class="block h-full">
-    <time datetime={date.toISOString()} class="text-sm text-muted">
-      {formatDate(date)}
-    </time>
-    <h3 class="mt-2 font-display text-lg font-semibold text-foreground group-hover:text-accent">
+    <h3 class="font-display text-lg font-semibold text-foreground group-hover:text-accent">
       {title}
     </h3>
     <p class="mt-2 text-sm leading-relaxed text-muted">{summary}</p>

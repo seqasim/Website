@@ -4,9 +4,9 @@ import Section from "../../components/Section.astro";
 import SectionHeading from "../../components/SectionHeading.astro";
 import NewsCard from "../../components/NewsCard.astro";
 import { getCollection } from "astro:content";
-import { byDateDesc } from "../../lib/site";
+import { byOrder } from "../../lib/site";
 
-const news = (await getCollection("news")).sort(byDateDesc);
+const news = (await getCollection("news")).sort(byOrder);
 ---
 
 <BaseLayout
@@ -24,7 +24,6 @@ const news = (await getCollection("news")).sort(byDateDesc);
         news.map((entry) => (
           <NewsCard
             title={entry.data.title}
-            date={entry.data.date}
             summary={entry.data.summary}
             slug={entry.id}
           />

@@ -110,8 +110,8 @@ alumni: false
 ```markdown
 ---
 title: "Lab welcomes new postdoctoral fellow"
-date: 2025-09-01
 summary: "Dr. Jane Smith joins the lab to study computational models of memory."
+order: 1
 ---
 
 Full news article body in Markdown.
@@ -120,9 +120,11 @@ Full news article body in Markdown.
 | Field | Required | Description |
 |-------|----------|-------------|
 | `title` | Yes | Headline |
-| `date` | Yes | Publication date (YYYY-MM-DD) |
 | `summary` | Yes | Short excerpt for cards |
+| `order` | Yes | Display order (lower = first) |
 | Body | Yes | Full article (Markdown) |
+
+News posts do not include dates.
 
 ---
 

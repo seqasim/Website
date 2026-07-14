@@ -22,7 +22,7 @@ This site is a static Astro site. All content lives in Markdown files under `src
 | Research areas | `src/content/research/` | Yes | `order` ascending |
 | Publications | `src/content/publications/` | No | `year` descending |
 | People | `src/content/people/` | No | `order` ascending, grouped by `role` |
-| News | `src/content/news/` | Yes | `date` descending |
+| News | `src/content/news/` | Yes | `order` ascending |
 | Media coverage | `src/content/media/` | No | `order` ascending |
 | Positions | `src/content/positions/` | No | file order; `open: true` shown |
 
@@ -123,7 +123,7 @@ Anyone with `alumni: true` (or `role: "Alum"`) appears in the Alumni section on 
 
 ## Add a news post
 
-News posts appear on the **News** page (`/news`) and the **3 most recent** automatically show on the homepage.
+News posts appear on the **News** page (`/news`) and the **first 3 by `order`** automatically show on the homepage. Do **not** include dates.
 
 **Step 1:** Pick a filename slug (kebab-case, becomes the URL). Example: `lab-presentation-sfn-2026.md` → `/news/lab-presentation-sfn-2026`.
 
@@ -132,8 +132,8 @@ News posts appear on the **News** page (`/news`) and the **3 most recent** autom
 ```markdown
 ---
 title: "Headline shown on the page and cards"
-date: 2026-07-05
 summary: "One-sentence excerpt for cards and previews."
+order: 1
 ---
 
 Full post body in Markdown. One or two short paragraphs is enough.
@@ -142,8 +142,8 @@ You can use **bold**, links, and lists.
 
 **Field rules:**
 - `title`: headline (required).
-- `date`: `YYYY-MM-DD` format (required). Posts sort newest-first.
 - `summary`: short teaser for cards on `/news` and the homepage (required).
+- `order`: lower numbers appear first (set new posts to `1` and bump others if needed).
 - Body: optional Markdown for the detail page.
 
 **Step 3:** Run `npm run build` to verify, then commit and push.
