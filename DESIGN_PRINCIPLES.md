@@ -35,8 +35,10 @@ The Qasim Lab website should feel like a modern neuroscience lab — scientific,
 - Large typography with clear hierarchy
 - Clean layouts with generous whitespace
 - Hand-authored minimalist SVG line icons (neuroscience motifs)
+- Faint data-motif backdrops behind key sections (see below)
 - Thin editorial rules (`.rule-accent`) for section accents
 - Photography of real lab members and the Monet hero banner
+- A slightly ink-tinted surface (`#F6F8F8`) so alternating sections are not stark white
 - Interactive elements only when they improve understanding
 - Subtle motion: opacity and transform transitions ≤ 200ms
 - Rounded cards with subtle shadows (not heavy drop shadows)
@@ -47,7 +49,8 @@ The Qasim Lab website should feel like a modern neuroscience lab — scientific,
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| Background | `#FFFFFF` / `#FAFAFA` | Page and section backgrounds |
+| Background | `#FFFFFF` | Page background |
+| Surface | `#F6F8F8` | Alternating sections — faint ink-tinted neutral (not stark gray) |
 | Foreground | `#18181B` | Body text, headings |
 | Muted | `#71717A` | Secondary text, captions |
 | Accent | `#CC0033` | Rutgers red — CTAs and links only |
@@ -56,6 +59,24 @@ The Qasim Lab website should feel like a modern neuroscience lab — scientific,
 | Border | `#E4E4E7` | Card borders, dividers |
 
 Rutgers red is an **accent for CTAs**, not a primary brand wash. Use the teal/ink token for the scientific visual system (icons, section labels). Active navigation uses ink, not red.
+
+---
+
+## Data-motif backdrops
+
+Approved decorative element for scientific atmosphere behind section content (homepage Research, Join CTA echo). Implemented in [`src/components/ResearchBackdrop.astro`](src/components/ResearchBackdrop.astro).
+
+Rules:
+- **Faint** — low ink/accent opacity (~10–14%); never competes with text or cards
+- **Masked** — radial edge fade so the graphic dissolves into the surface
+- **Behind content** — absolute layer under a `relative z-10` content wrapper; use `Section` with `backdrop` + named `backdrop` slot
+- **Palette-locked** — `currentColor` ink + sparse accent only; no gradients as page backgrounds
+- **`aria-hidden`** — decorative only; meaning stays in adjacent copy
+- **No motion** — static SVG; respects the site’s no-parallax / no-flashy-animation rules
+
+Motifs (left → right): spike raster, place-field heatmap, LFP traces, fitted curve — abstract stand-ins for the four research areas. Prefer this hand-authored SVG language over stock or clip-art science imagery.
+
+Whitespace remains intentional; a backdrop warms empty surface, it does not fill every section.
 
 ---
 

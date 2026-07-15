@@ -20,7 +20,11 @@ interface Props {
 const { title, summary, slug, icon } = Astro.props;
 ---
 
-<Card class="group h-full">
+<Card class="group relative h-full overflow-hidden !shadow-md hover:!shadow-lg">
+  <span
+    class="pointer-events-none absolute inset-x-0 top-0 h-px bg-ink/20 transition-colors duration-150 group-hover:bg-accent/50"
+    aria-hidden="true"
+  ></span>
   <a href={withBase(`/research/${slug}`)} class="block h-full">
     {
       icon && (
