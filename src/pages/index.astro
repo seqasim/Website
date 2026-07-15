@@ -5,8 +5,9 @@ import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import ResearchCard from "../components/ResearchCard.astro";
 import PublicationItem from "../components/PublicationItem.astro";
-import NewsCard from "../components/NewsCard.astro";
 import PersonCard from "../components/PersonCard.astro";
+import IconFeature from "../components/IconFeature.astro";
+import Affiliations from "../components/Affiliations.astro";
 import Button from "../components/Button.astro";
 import { getCollection } from "astro:content";
 import { byOrder, byYearDesc, withBase } from "../lib/site";
@@ -17,9 +18,35 @@ const allNews = (await getCollection("news")).sort(byOrder);
 const allPeople = (await getCollection("people")).sort(byOrder);
 
 const recentPublications = allPublications.slice(0, 3);
-const latestNews = allNews.slice(0, 3);
+const latestNews = allNews.slice(0, 4);
 const pi = allPeople.find((p) => p.data.role === "PI");
-const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !== "PI").slice(0, 2);
+const featuredPeople = allPeople
+  .filter((p) => !p.data.alumni && p.data.role !== "PI")
+  .slice(0, 2);
+
+const bigQuestions = [
+  {
+    icon: "sticky" as const,
+    title: "How do memories stick?",
+    description:
+      "We probe the mental computations that encode and strengthen lasting memories.",
+    href: "/research",
+  },
+  {
+    icon: "fade" as const,
+    title: "Why do some memories fade?",
+    description:
+      "We study how retrieval and forgetting reshape neural representations over time.",
+    href: "/research/memory-goal-cognition",
+  },
+  {
+    icon: "mental-health" as const,
+    title: "How can memory go awry?",
+    description:
+      "We ask how sticky-memory mechanisms fail in memory loss and mental health disorders.",
+    href: "/research/emotion-decision-making",
+  },
+];
 ---
 
 <BaseLayout>
@@ -34,6 +61,28 @@ const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !==
 
   <Section>
     <SectionHeading
+      eyebrow="Questions"
+      title="What drives our science"
+      intro="Three questions that orient every project in the lab."
+      align="center"
+      showRule
+    />
+    <div class="grid gap-10 md:grid-cols-3 md:gap-8">
+      {
+        bigQuestions.map((q) => (
+          <IconFeature
+            icon={q.icon}
+            title={q.title}
+            description={q.description}
+            href={q.href}
+          />
+        ))
+      }
+    </div>
+  </Section>
+
+  <Section class="bg-surface">
+    <SectionHeading
       eyebrow="Research"
       title="What we study"
       intro="Our lab investigates the neural computations that make memories persist, and what happens when those mechanisms fail in memory loss and psychiatric illness."
@@ -45,6 +94,7 @@ const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !==
             title={entry.data.title}
             summary={entry.data.summary}
             slug={entry.id}
+            icon={entry.data.icon}
           />
         ))
       }
@@ -54,6 +104,17 @@ const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !==
         View all research areas
       </Button>
     </div>
+  </Section>
+
+  <Section>
+    <SectionHeading
+      eyebrow="Affiliations"
+      title="Where we sit"
+      intro="The Qasim Lab is based at Rutgers Robert Wood Johnson Medical School and connected across campus."
+      align="center"
+      showRule
+    />
+    <Affiliations />
   </Section>
 
   <Section class="bg-surface">
@@ -83,30 +144,6 @@ const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !==
   </Section>
 
   <Section>
-    <SectionHeading
-      eyebrow="News"
-      title="Latest news"
-      intro="Updates from the lab."
-    />
-    <div class="grid gap-6 md:grid-cols-3">
-      {
-        latestNews.map((entry) => (
-          <NewsCard
-            title={entry.data.title}
-            summary={entry.data.summary}
-            slug={entry.id}
-          />
-        ))
-      }
-    </div>
-    <div class="mt-8">
-      <Button href={withBase("/news")} variant="secondary">
-        View all news
-      </Button>
-    </div>
-  </Section>
-
-  <Section class="bg-surface">
     <SectionHeading
       eyebrow="People"
       title="Meet the lab"
@@ -145,9 +182,42 @@ const featuredPeople = allPeople.filter((p) => !p.data.alumni && p.data.role !==
     </div>
   </Section>
 
+  <Section class="bg-surface">
+    <SectionHeading
+      eyebrow="News"
+      title="Lab updates"
+      intro="Brief notes from the lab."
+    />
+    <ul class="divide-y divide-border border-y border-border">
+      {
+        latestNews.map((entry) => (
+          <li>
+            <a
+              href={withBase(`/news/${entry.id}`)}
+              class="group flex flex-col gap-1 py-5 md:flex-row md:items-baseline md:justify-between md:gap-8"
+            >
+              <span class="font-medium text-foreground group-hover:text-accent">
+                {entry.data.title}
+              </span>
+              <span class="max-w-xl shrink-0 text-sm text-muted md:text-right">
+                {entry.data.summary}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8">
+      <Button href={withBase("/news")} variant="secondary">
+        View all news
+      </Button>
+    </div>
+  </Section>
+
   <Section>
     <div class="rounded-xl border border-border bg-surface p-8 md:p-12">
-      <h2 class="font-display text-3xl font-semibold text-foreground">
+      <div class="rule-accent mx-0 mb-6" />
+      <h2 class="font-display text-3xl font-semibold tracking-tight text-foreground">
         Join the lab
       </h2>
       <p class="mt-4 max-w-2xl text-lg text-muted">

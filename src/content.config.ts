@@ -8,6 +8,18 @@ const research = defineCollection({
     title: z.string(),
     summary: z.string(),
     order: z.number().default(0),
+    /** Name of a built-in Icon.astro glyph (electrode, grid, network, function, …). */
+    icon: z
+      .enum([
+        "electrode",
+        "grid",
+        "network",
+        "function",
+        "sticky",
+        "fade",
+        "mental-health",
+      ])
+      .optional(),
   }),
 });
 

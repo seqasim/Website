@@ -1,8 +1,8 @@
 # Design Principles
 
-The Qasim Lab website should feel like a modern research institute — not a typical university faculty page.
+The Qasim Lab website should feel like a modern neuroscience lab — scientific, calm, and editorial — not a news feed or a typical university faculty page.
 
-**Inspiration:** Arc Institute, OpenAI, Anthropic, Apple, HHMI Janelia, Allen Institute.
+**Inspiration:** Doeller Lab, Arc Institute, OpenAI, Anthropic, Apple, HHMI Janelia, Allen Institute.
 
 ---
 
@@ -26,6 +26,7 @@ The Qasim Lab website should feel like a modern research institute — not a typ
 - Flashy animations, parallax, scroll-jacking
 - Gradients (solid colors only)
 - Bootstrap-style or overly rounded "pill" UI
+- Newsy card grids as the homepage lead
 
 ---
 
@@ -33,8 +34,9 @@ The Qasim Lab website should feel like a modern research institute — not a typ
 
 - Large typography with clear hierarchy
 - Clean layouts with generous whitespace
-- Carefully chosen scientific illustrations (when available)
-- Photography of real lab members (placeholder silhouettes until then)
+- Hand-authored minimalist SVG line icons (neuroscience motifs)
+- Thin editorial rules (`.rule-accent`) for section accents
+- Photography of real lab members and the Monet hero banner
 - Interactive elements only when they improve understanding
 - Subtle motion: opacity and transform transitions ≤ 200ms
 - Rounded cards with subtle shadows (not heavy drop shadows)
@@ -48,10 +50,12 @@ The Qasim Lab website should feel like a modern research institute — not a typ
 | Background | `#FFFFFF` / `#FAFAFA` | Page and section backgrounds |
 | Foreground | `#18181B` | Body text, headings |
 | Muted | `#71717A` | Secondary text, captions |
-| Accent | `#CC0033` | Rutgers red — CTAs, links, highlights only |
+| Accent | `#CC0033` | Rutgers red — CTAs and links only |
+| Ink | `#0F6E6E` | Secondary scientific accent — icons, eyebrows, active nav |
+| Ink soft | `#E6F2F2` | Soft circular backgrounds behind icons |
 | Border | `#E4E4E7` | Card borders, dividers |
 
-Rutgers red is an **accent**, not a primary color. Use it sparingly for CTAs, active nav states, and key highlights.
+Rutgers red is an **accent for CTAs**, not a primary brand wash. Use the teal/ink token for the scientific visual system (icons, section labels). Active navigation uses ink, not red.
 
 ---
 
@@ -59,9 +63,26 @@ Rutgers red is an **accent**, not a primary color. Use it sparingly for CTAs, ac
 
 - **Display / headlines:** Fraunces (serif) — editorial, scientific gravitas
 - **Body / UI:** Inter (sans) — clean, readable, modern
-- Large headline sizes on hero and section titles
+- Large headline sizes on hero and section titles; slight negative tracking on display sizes
 - Comfortable line height (1.6–1.75 for body)
 - No more than 3 font sizes per section
+- Nav labels: uppercase, wide tracking (lab-site convention)
+
+---
+
+## Icon system
+
+Custom line icons live in [`src/components/Icon.astro`](src/components/Icon.astro). They use `currentColor` stroke (~1.5px) and are referenced by name:
+
+| Name | Motif | Typical use |
+|------|-------|-------------|
+| `electrode` | Probe + waveform | Direct brain recordings |
+| `grid` | Hexagonal place field | Memory / spatial cognition |
+| `network` | Connected nodes | Memory persistence / mental health |
+| `function` | Axes + curve | Computational methods |
+| `sticky` / `fade` / `mental-health` | Big-question row | Homepage questions |
+
+Research areas declare `icon:` in frontmatter. Wrap icons in `.icon-circle` or a small ink-soft disc on cards.
 
 ---
 
@@ -77,9 +98,17 @@ Rutgers red is an **accent**, not a primary color. Use it sparingly for CTAs, ac
 ## Layout Rules
 
 - Every page answers **one primary question** before introducing secondary content
-- Homepage flow: Hero → Research → Publications → News → People → Join
+- Homepage flow: Hero (Monet + sticky-memory question) → Big questions → Research → Affiliations → Publications → People → News (compact) → Join
+- News is never the homepage lead — prefer a compact list, not a card grid
 - One column on mobile; two or three columns on desktop where appropriate
 - Cards use `rounded-xl`, subtle `shadow-sm`, white background
+- Affiliations appear on Home, Contact, and Footer (data in `site.ts`)
+
+---
+
+## Link previews
+
+The Monet banner (`/images/banner_picture_monet.jpg`) is the default Open Graph / Twitter card image via `BaseLayout`. Keep this as the signature share image unless a page explicitly overrides `ogImage`.
 
 ---
 
@@ -99,6 +128,7 @@ Rutgers red is an **accent**, not a primary color. Use it sparingly for CTAs, ac
 - Visible focus rings on all interactive elements
 - Alt text on all images
 - Skip-to-content link
+- Icons are `aria-hidden`; meaning lives in adjacent text
 
 ---
 

@@ -7,14 +7,20 @@ import { siteConfig, withBase } from "../lib/site";
 interface Props {
   title?: string;
   description?: string;
+  /** Path under public/, defaults to the Monet banner for link previews. */
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
   title = siteConfig.title,
   description = siteConfig.description,
+  ogImage = siteConfig.ogImage,
+  ogImageAlt = "Artwork inspired by neural activity and memory — Qasim Lab",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(withBase(ogImage), Astro.site);
 ---
 
 <!doctype html>
@@ -33,6 +39,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <title>{title}</title>
   </head>

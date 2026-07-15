@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import Affiliations from "../components/Affiliations.astro";
 import Button from "../components/Button.astro";
 import { siteConfig, withBase } from "../lib/site";
 ---
@@ -15,6 +16,7 @@ import { siteConfig, withBase } from "../lib/site";
       eyebrow="Contact"
       title="How can you reach us?"
       intro="We welcome inquiries about research, collaborations, and joining the lab."
+      showRule
     />
 
     <div class="grid gap-12 md:grid-cols-2">
@@ -107,5 +109,15 @@ import { siteConfig, withBase } from "../lib/site";
         </div>
       </div>
     </div>
+  </Section>
+
+  <Section class="bg-surface">
+    <SectionHeading
+      eyebrow="Affiliations"
+      title="Where we sit"
+      intro="Institutional homes and campus partnerships."
+      showRule
+    />
+    <Affiliations />
   </Section>
 </BaseLayout>

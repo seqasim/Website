@@ -1,0 +1,56 @@
+---
+import Icon from "./Icon.astro";
+import { withBase } from "../lib/site";
+
+interface Props {
+  icon:
+    | "electrode"
+    | "grid"
+    | "network"
+    | "function"
+    | "sticky"
+    | "fade"
+    | "mental-health";
+  title: string;
+  description?: string;
+  href?: string;
+}
+
+const { icon, title, description, href } = Astro.props;
+const linkHref = href ? (href.startsWith("http") ? href : withBase(href)) : undefined;
+---
+
+{
+  linkHref ? (
+    <a
+      href={linkHref}
+      class="group flex flex-col items-center text-center transition-colors"
+    >
+      <div class="icon-circle transition-colors group-hover:bg-ink/15">
+        <Icon name={icon} size={28} />
+      </div>
+      <h3 class="mt-5 font-display text-lg font-semibold text-ink group-hover:text-accent md:text-xl">
+        {title}
+      </h3>
+      {description && (
+        <p class="mt-2 max-w-xs text-sm leading-relaxed text-muted">
+          {description}
+        </p>
+      )}
+    </a>
+  ) : (
+    <div class="flex flex-col items-center text-center">
+      <div class="icon-circle">
+        <Icon name={icon} size={28} />
+      </div>
+      <h3 class="mt-5 font-display text-lg font-semibold text-ink md:text-xl">
+        {title}
+      </h3>
+      {description && (
+        <p class="mt-2 max-w-xs text-sm leading-relaxed text-muted">
+          {description}
+        </p>
+      )}
+    </div>
+  )
+}
