@@ -37,6 +37,7 @@ Create `src/content/research/<slug>.md`:
 title: "Short Area Name"
 summary: "One-sentence description shown on cards."
 order: 5
+icon: "network"
 ---
 
 Body paragraphs in Markdown describing the research area. Two short
@@ -44,9 +45,27 @@ paragraphs is ideal. This renders on the detail page /research/<slug>.
 ```
 
 - `order`: set higher than the current max to append, or renumber to reposition.
+- `icon`: optional name of a built-in line icon from `src/components/Icon.astro`. Allowed values: `electrode`, `grid`, `network`, `function`, `sticky`, `fade`, `mental-health`. Use one that matches the science (probe/waveform, place-field hexagon, node network, math curve, etc.). Shown on Research cards and the homepage.
 - Featured on the homepage automatically (homepage shows all research areas).
 
 To remove: delete the file.
+
+---
+
+## Update affiliations
+
+Affiliations are **not** a Markdown collection. They live in the `affiliations` array in [`src/lib/site.ts`](../../../src/lib/site.ts):
+
+```ts
+{
+  name: "Brain Health Institute",
+  shortName: "Rutgers BHI",
+  role: "Core member",
+  url: "https://brainhealthinstitute.rutgers.edu/",
+},
+```
+
+They render on the homepage, Contact page, and Footer via `Affiliations.astro`. Edit that array to add/remove/reorder — no page changes needed.
 
 ---
 

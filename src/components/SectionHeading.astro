@@ -3,22 +3,67 @@ interface Props {
   eyebrow?: string;
   title: string;
   intro?: string;
+  align?: "left" | "center";
+  showRule?: boolean;
   class?: string;
 }
 
-const { eyebrow, title, intro, class: className = "" } = Astro.props;
+const {
+  eyebrow,
+  title,
+  intro,
+  align = "left",
+  showRule = false,
+  class: className = "",
+} = Astro.props;
+
+const centered = align === "center";
 ---
 
-<div class:list={["mb-10 md:mb-12", className]}>
-  {eyebrow && (
-    <p class="mb-2 text-sm font-medium uppercase tracking-wider text-accent">
-      {eyebrow}
-    </p>
-  )}
-  <h2 class="font-display text-3xl font-semibold text-foreground md:text-4xl">
+<div
+  class:list={[
+    "mb-10 md:mb-12",
+    centered && "section-heading-centered",
+    className,
+  ]}
+>
+  {
+    eyebrow && (
+      <p
+        class:list={[
+          "mb-2 text-sm font-medium uppercase tracking-wider text-ink",
+          centered && "text-center",
+        ]}
+      >
+        {eyebrow}
+      </p>
+    )
+  }
+  {
+    showRule && (
+      <div class:list={["mb-4", !centered && "flex justify-start"]}>
+        <div class:list={["rule-accent", !centered && "mx-0"]} />
+      </div>
+    )
+  }
+  <h2
+    class:list={[
+      "font-display text-3xl font-semibold tracking-tight text-foreground md:text-4xl lg:text-[2.75rem] lg:leading-tight",
+      centered && "text-center",
+    ]}
+  >
     {title}
   </h2>
-  {intro && (
-    <p class="mt-4 max-w-2xl text-lg text-muted">{intro}</p>
-  )}
+  {
+    intro && (
+      <p
+        class:list={[
+          "section-heading-intro mt-4 max-w-2xl text-lg text-muted",
+          centered && "mx-auto text-center",
+        ]}
+      >
+        {intro}
+      </p>
+    )
+  }
 </div>

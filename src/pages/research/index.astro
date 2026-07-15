@@ -18,6 +18,7 @@ const research = (await getCollection("research")).sort(byOrder);
       eyebrow="Research"
       title="What makes memories stick?"
       intro="We investigate the mental computations that encode, strengthen, and retrieve memories — and how those processes go awry in memory loss and mental health disorders."
+      showRule
     />
     <div class="grid gap-6 md:grid-cols-2">
       {
@@ -26,6 +27,7 @@ const research = (await getCollection("research")).sort(byOrder);
             title={entry.data.title}
             summary={entry.data.summary}
             slug={entry.id}
+            icon={entry.data.icon}
           />
         ))
       }

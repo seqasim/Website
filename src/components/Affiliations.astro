@@ -1,0 +1,52 @@
+---
+import { affiliations } from "../lib/site";
+
+interface Props {
+  /** When true, use a denser footer-style list instead of cards. */
+  compact?: boolean;
+  class?: string;
+}
+
+const { compact = false, class: className = "" } = Astro.props;
+---
+
+{
+  compact ? (
+    <ul class:list={["space-y-2", className]}>
+      {affiliations.map((item) => (
+        <li>
+          <a
+            href={item.url}
+            class="text-sm text-muted hover:text-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.name}
+          </a>
+          <span class="block text-xs text-muted/80">{item.role}</span>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class:list={["grid gap-4 sm:grid-cols-3", className]}>
+      {affiliations.map((item) => (
+        <a
+          href={item.url}
+          class="group flex flex-col rounded-xl border border-border bg-background p-6 transition-all duration-150 hover:border-ink/30 hover:shadow-sm"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="text-xs font-medium uppercase tracking-wider text-ink">
+            {item.role}
+          </span>
+          <span class="mt-2 font-display text-lg font-semibold text-foreground group-hover:text-accent">
+            {item.name}
+          </span>
+          {item.shortName && (
+            <span class="mt-1 text-sm text-muted">{item.shortName}</span>
+          )}
+        </a>
+      ))}
+    </div>
+  )
+}

@@ -2,6 +2,7 @@
 title: "Computational Methods"
 summary: "Statistical analysis and computational models for linking neural activity to behavior."
 order: 4
+icon: "function"
 ---
 
 We develop and apply computational tools to extract meaning from complex neural datasets. This includes methods for detecting place cells across species, modeling behavioral learning dynamics, and relating single-neuron spiking to local field potential oscillations.

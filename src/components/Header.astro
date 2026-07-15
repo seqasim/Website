@@ -23,9 +23,9 @@ const currentPath = Astro.url.pathname
           <a
             href={withBase(link.href)}
             class:list={[
-              "text-sm font-medium transition-colors hover:text-accent",
+              "text-sm font-medium uppercase tracking-wide transition-colors hover:text-ink",
               currentPath === link.href || currentPath.startsWith(`${link.href}/`)
-                ? "text-accent"
+                ? "text-ink"
                 : "text-muted",
             ]}
           >
@@ -56,9 +56,9 @@ const currentPath = Astro.url.pathname
             <a
               href={withBase(link.href)}
               class:list={[
-                "block px-4 py-2 text-sm font-medium transition-colors hover:bg-surface hover:text-accent",
+                "block px-4 py-2 text-sm font-medium uppercase tracking-wide transition-colors hover:bg-surface hover:text-ink",
                 currentPath === link.href || currentPath.startsWith(`${link.href}/`)
-                  ? "text-accent"
+                  ? "text-ink"
                   : "text-foreground",
               ]}
             >
