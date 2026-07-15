@@ -4,13 +4,23 @@ import Container from "./Container.astro";
 interface Props {
   class?: string;
   id?: string;
+  /** When true, section is relative + overflow-hidden for a backdrop slot. */
+  backdrop?: boolean;
 }
 
-const { class: className = "", id } = Astro.props;
+const { class: className = "", id, backdrop = false } = Astro.props;
 ---
 
-<section id={id} class:list={["py-16 md:py-24", className]}>
-  <Container>
+<section
+  id={id}
+  class:list={[
+    "relative py-16 md:py-24",
+    backdrop && "overflow-hidden",
+    className,
+  ]}
+>
+  <slot name="backdrop" />
+  <Container class={backdrop ? "relative z-10" : undefined}>
     <slot />
   </Container>
 </section>
