@@ -34,8 +34,8 @@ The Qasim Lab website should feel like a modern neuroscience lab — scientific,
 
 - Large typography with clear hierarchy
 - Clean layouts with generous whitespace
-- Hand-authored minimalist SVG line icons (neuroscience motifs)
-- Faint data-motif backdrops behind key sections (see below)
+- Licensed Adobe Stock brain icons (tinted to ink teal), not improvised/AI line icons
+- Soft photographic section backdrops from real EEG/lab science imagery (see below)
 - Thin editorial rules (`.rule-accent`) for section accents
 - Photography of real lab members and the Monet hero banner
 - A slightly ink-tinted surface (`#F6F8F8`) so alternating sections are not stark white
@@ -62,19 +62,21 @@ Rutgers red is an **accent for CTAs**, not a primary brand wash. Use the teal/in
 
 ---
 
-## Data-motif backdrops
+## Photographic section backdrops
 
 Approved decorative element for scientific atmosphere behind section content (homepage Research, Join CTA echo). Implemented in [`src/components/ResearchBackdrop.astro`](src/components/ResearchBackdrop.astro).
 
-Rules:
-- **Faint** — low ink/accent opacity (~10–14%); never competes with text or cards
-- **Masked** — radial edge fade so the graphic dissolves into the surface
-- **Behind content** — absolute layer under a `relative z-10` content wrapper; use `Section` with `backdrop` + named `backdrop` slot
-- **Palette-locked** — `currentColor` ink + sparse accent only; no gradients as page backgrounds
-- **`aria-hidden`** — decorative only; meaning stays in adjacent copy
-- **No motion** — static SVG; respects the site’s no-parallax / no-flashy-animation rules
+Assets live in `public/images/backdrops/`:
+- `brain-recordings-figure.jpg` — lab iEEG traces + electrode brain model (Research section)
+- `eeg-traces-blue.jpg` / `eeg-traces-mono.jpg` — licensed EEG paper photographs (Join echo and alternatives)
 
-Motifs (left → right): spike raster, place-field heatmap, LFP traces, fitted curve — abstract stand-ins for the four research areas. Prefer this hand-authored SVG language over stock or clip-art science imagery.
+Rules:
+- **Real photography / lab figures only** — no generated SVG data motifs, no circuit-brain stock illustrations
+- **Faint** — ~20–30% opacity; never competes with text or cards
+- **Masked** — radial edge fade so the photo dissolves into the surface
+- **Behind content** — absolute layer under a `relative z-10` content wrapper; use `Section` with `backdrop` + named `backdrop` slot
+- **`aria-hidden`** — decorative only; meaning stays in adjacent copy
+- **No motion** — static photos; respects the site’s no-parallax / no-flashy-animation rules
 
 Whitespace remains intentional; a backdrop warms empty surface, it does not fill every section.
 
@@ -93,17 +95,19 @@ Whitespace remains intentional; a backdrop warms empty surface, it does not fill
 
 ## Icon system
 
-Custom line icons live in [`src/components/Icon.astro`](src/components/Icon.astro). They use `currentColor` stroke (~1.5px) and are referenced by name:
+Icons are cropped from the licensed Adobe Stock “Brain Icons” pack (`AdobeStock_718653205`), tinted to ink teal, and stored as PNGs in [`public/images/icons/`](public/images/icons/). [`src/components/Icon.astro`](src/components/Icon.astro) maps a name to a PNG.
 
-| Name | Motif | Typical use |
-|------|-------|-------------|
-| `electrode` | Probe + waveform | Direct brain recordings |
-| `grid` | Hexagonal place field | Memory / spatial cognition |
-| `network` | Connected nodes | Memory persistence / mental health |
-| `function` | Axes + curve | Computational methods |
-| `sticky` / `fade` / `mental-health` | Big-question row | Homepage questions |
+| Name | Typical use |
+|------|-------------|
+| `neuron` | Direct brain recordings; “memories stick” |
+| `cognition` | Memory / goal-directed cognition |
+| `wise` | Memory persistence & mental health |
+| `neural-network` | Computational methods |
+| `alzheimer` | “Why do memories fade?” |
+| `mental-health` | “How can memory go awry?” |
+| `brain` / `learning` / `focus` / `neurology` / `intellect` | Available alternates |
 
-Research areas declare `icon:` in frontmatter. Wrap icons in `.icon-circle` or a small ink-soft disc on cards.
+Legacy names (`electrode`, `grid`, `network`, `function`, `sticky`, `fade`) still resolve via aliases. Research areas declare `icon:` in frontmatter. Wrap icons in `.icon-circle` or a small ink-soft disc on cards. Do not invent new SVG “AI slop” glyphs — add another PNG from the licensed pack instead.
 
 ---
 

@@ -27,14 +27,14 @@ const featuredPeople = allPeople
 
 const bigQuestions = [
   {
-    icon: "sticky" as const,
+    icon: "neuron" as const,
     title: "How do memories stick?",
     description:
       "We probe the mental computations that encode and strengthen lasting memories.",
     href: "/research",
   },
   {
-    icon: "fade" as const,
+    icon: "alzheimer" as const,
     title: "Why do some memories fade?",
     description:
       "We study how retrieval and forgetting reshape neural representations over time.",
@@ -83,7 +83,11 @@ const bigQuestions = [
   </Section>
 
   <Section class="bg-surface" backdrop>
-    <ResearchBackdrop slot="backdrop" />
+    <ResearchBackdrop
+      slot="backdrop"
+      src="/images/backdrops/brain-recordings-figure.jpg"
+      position="center"
+    />
     <SectionHeading
       eyebrow="Research"
       title="What we study"
@@ -218,7 +222,12 @@ const bigQuestions = [
 
   <Section>
     <div class="relative overflow-hidden rounded-xl border border-border bg-surface p-8 md:p-12">
-      <ResearchBackdrop density="echo" class="inset-auto -right-8 -bottom-8 h-64 w-96 md:h-80 md:w-[28rem]" />
+      <ResearchBackdrop
+        density="echo"
+        src="/images/backdrops/eeg-traces-mono.jpg"
+        position="right bottom"
+        class="inset-auto -right-8 -bottom-8 h-64 w-96 md:h-80 md:w-[28rem]"
+      />
       <div class="relative z-10">
         <div class="rule-accent mx-0 mb-6" />
         <h2 class="font-display text-3xl font-semibold tracking-tight text-foreground">

@@ -1,21 +1,32 @@
 ---
 /**
- * Faint scientific-data backdrop for the homepage "What we study" section.
- * Four motifs left-to-right: spike raster, place-field heatmap, LFP traces, fitted curve.
- * Decorative only — aria-hidden, pointer-events none, masked at edges.
+ * Soft photographic backdrop for homepage sections.
+ * Uses licensed / lab science photographs — not generated graphics.
  */
+import { withBase } from "../lib/site";
+
 interface Props {
-  /** Softer opacity for secondary placements (e.g. Join CTA corner). */
+  /** Image path under public/, e.g. /images/backdrops/eeg-traces-blue.jpg */
+  src?: string;
+  /** Softer opacity / corner placement for secondary placements. */
   density?: "full" | "echo";
   class?: string;
+  /** CSS object-position for the photo crop. */
+  position?: string;
 }
 
-const { density = "full", class: className = "" } = Astro.props;
-const inkOpacity = density === "full" ? "text-ink/[0.14]" : "text-ink/[0.10]";
+const {
+  src = "/images/backdrops/eeg-traces-blue.jpg",
+  density = "full",
+  class: className = "",
+  position = "center",
+} = Astro.props;
+
+const opacity = density === "full" ? "opacity-[0.28]" : "opacity-[0.20]";
 const maskClass =
   density === "full"
-    ? "[mask-image:radial-gradient(120%_120%_at_50%_40%,#000_50%,transparent)]"
-    : "[mask-image:radial-gradient(90%_90%_at_85%_70%,#000_40%,transparent)]";
+    ? "[mask-image:radial-gradient(120%_110%_at_50%_45%,#000_45%,transparent)]"
+    : "[mask-image:radial-gradient(90%_90%_at_85%_70%,#000_35%,transparent)]";
 ---
 
 <div
@@ -27,127 +38,12 @@ const maskClass =
   ]}
   aria-hidden="true"
 >
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1200 520"
-    preserveAspectRatio="xMidYMid slice"
-    class:list={["h-full w-full", inkOpacity]}
-    fill="none"
-  >
-    <!-- 1. Spike raster (left) — Direct Brain Recordings -->
-    <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-      {
-        [
-          [40, 80, [12, 28, 45, 62, 78, 95, 110, 140, 165, 190]],
-          [40, 105, [8, 35, 52, 70, 88, 120, 145, 175, 200]],
-          [40, 130, [18, 40, 55, 85, 100, 130, 155, 180]],
-          [40, 155, [5, 22, 48, 75, 92, 115, 150, 170, 195]],
-          [40, 180, [15, 32, 58, 80, 105, 135, 160, 185]],
-          [40, 205, [10, 38, 65, 90, 125, 148, 172, 198]],
-          [40, 230, [25, 45, 72, 95, 118, 142, 168, 192]],
-          [40, 255, [6, 30, 50, 82, 108, 138, 162, 188]],
-          [40, 280, [20, 42, 68, 98, 122, 155, 178]],
-          [40, 305, [14, 36, 60, 88, 112, 145, 170, 195]],
-        ].map(([baseX, y, offsets]) =>
-          (offsets as number[]).map((ox) => (
-            <line
-              x1={Number(baseX) + ox}
-              y1={Number(y) - 6}
-              x2={Number(baseX) + ox}
-              y2={Number(y) + 6}
-            />
-          )),
-        )
-      }
-    </g>
-
-    <!-- 2. Place-field heatmap + faint hex lattice — Memory & Goal-Directed Cognition -->
-    <g
-      stroke="currentColor"
-      stroke-width="0.8"
-      opacity="0.45"
-      transform="translate(320, 70)"
-    >
-      <path d="M40 20 L80 20 L100 55 L80 90 L40 90 L20 55 Z" />
-      <path d="M100 55 L140 55 L160 90 L140 125 L100 125 L80 90 Z" />
-      <path d="M40 90 L80 90 L100 125 L80 160 L40 160 L20 125 Z" />
-      <path d="M100 125 L140 125 L160 160 L140 195 L100 195 L80 160 Z" />
-      <path d="M160 90 L200 90 L220 125 L200 160 L160 160 L140 125 Z" />
-      <path d="M160 160 L200 160 L220 195 L200 230 L160 230 L140 195 Z" />
-      <path d="M80 160 L100 195 L80 230 L40 230 L20 195 L40 160 Z" />
-      <path d="M220 125 L260 125 L280 160 L260 195 L220 195 L200 160 Z" />
-    </g>
-    <g transform="translate(320, 70)">
-      <circle cx="90" cy="100" r="38" class="fill-ink/20" />
-      <circle cx="150" cy="150" r="48" class="fill-accent/15" />
-      <circle cx="200" cy="100" r="32" class="fill-ink/18" />
-      <circle cx="130" cy="60" r="28" class="fill-ink/12" />
-      <circle cx="180" cy="200" r="36" class="fill-accent/12" />
-      <circle cx="70" cy="170" r="24" class="fill-ink/14" />
-    </g>
-
-    <!-- 3. LFP / waveform traces — Memory Persistence & Mental Health -->
-    <g
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      transform="translate(620, 100)"
-    >
-      <path
-        d="M0 40 C40 10, 80 70, 120 40 S200 10, 240 40 S320 70, 360 40"
-        opacity="0.9"
-      />
-      <path
-        d="M0 90 C40 60, 80 120, 120 90 S200 60, 240 90 S320 120, 360 90"
-        opacity="0.7"
-      />
-      <path
-        d="M0 140 C40 110, 80 170, 120 140 S200 110, 240 140 S320 170, 360 140"
-        opacity="0.55"
-      />
-      <path
-        d="M0 190 C40 160, 80 220, 120 190 S200 160, 240 190 S320 220, 360 190"
-        opacity="0.4"
-        class="stroke-accent"
-      />
-      <path
-        d="M0 240 C40 210, 80 270, 120 240 S200 210, 240 240 S320 270, 360 240"
-        opacity="0.35"
-      />
-    </g>
-
-    <!-- 4. Fitted curve on axes — Computational Methods -->
-    <g transform="translate(920, 80)" stroke="currentColor" fill="none">
-      <path d="M20 320 V40 H280" stroke-width="1.2" opacity="0.5" />
-      <path
-        d="M30 280 C70 250, 100 180, 140 140 S200 60, 260 50"
-        stroke-width="1.8"
-        stroke-linecap="round"
-        class="stroke-accent"
-        opacity="0.7"
-      />
-      {
-        [
-          [45, 265],
-          [70, 240],
-          [95, 200],
-          [120, 165],
-          [145, 130],
-          [170, 105],
-          [195, 80],
-          [220, 70],
-          [245, 55],
-        ].map(([x, y]) => (
-          <circle
-            cx={x}
-            cy={y}
-            r="3.5"
-            class="fill-ink/40"
-            stroke="none"
-          />
-        ))
-      }
-    </g>
-  </svg>
+  <img
+    src={withBase(src)}
+    alt=""
+    class:list={["h-full w-full object-cover", opacity]}
+    style={`object-position: ${position}`}
+    loading="lazy"
+    decoding="async"
+  />
 </div>

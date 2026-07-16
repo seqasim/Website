@@ -8,16 +8,27 @@ const research = defineCollection({
     title: z.string(),
     summary: z.string(),
     order: z.number().default(0),
-    /** Name of a built-in Icon.astro glyph (electrode, grid, network, function, …). */
+    /** Adobe Stock brain-icon name (see public/images/icons/). Legacy aliases still resolve in Icon.astro. */
     icon: z
       .enum([
+        "neuron",
+        "cognition",
+        "mental-health",
+        "alzheimer",
+        "neural-network",
+        "neurology",
+        "intellect",
+        "wise",
+        "learning",
+        "brain",
+        "focus",
+        // Legacy aliases
         "electrode",
         "grid",
         "network",
         "function",
         "sticky",
         "fade",
-        "mental-health",
       ])
       .optional(),
   }),
