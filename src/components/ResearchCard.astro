@@ -1,20 +1,14 @@
 ---
 import Card from "./Card.astro";
 import Icon from "./Icon.astro";
+import type { IconName } from "../lib/icons";
 import { withBase } from "../lib/site";
 
 interface Props {
   title: string;
   summary: string;
   slug: string;
-  icon?:
-    | "electrode"
-    | "grid"
-    | "network"
-    | "function"
-    | "sticky"
-    | "fade"
-    | "mental-health";
+  icon?: IconName;
 }
 
 const { title, summary, slug, icon } = Astro.props;
@@ -29,7 +23,7 @@ const { title, summary, slug, icon } = Astro.props;
     {
       icon && (
         <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-ink-soft text-ink transition-colors group-hover:bg-ink/15">
-          <Icon name={icon} size={22} />
+          <Icon name={icon} size={26} />
         </div>
       )
     }

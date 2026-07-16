@@ -2,7 +2,7 @@
 title: "Memory Persistence and Mental Health"
 summary: "How the computations that make memories sticky can go awry in memory loss and psychiatric disorders."
 order: 3
-icon: "network"
+icon: "wise"
 ---
 
 Why do some experiences become lasting memories while others fade? We investigate the mental computations — in entorhinal cortex, hippocampus, amygdala, and beyond — that encode, strengthen, and retrieve memories.
