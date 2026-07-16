@@ -30,22 +30,19 @@ const bigQuestions = [
     icon: "neuron" as const,
     title: "How do memories stick?",
     description:
-      "We probe the mental computations that encode and strengthen lasting memories.",
-    href: "/research",
+      "We probe the mental computations that encode and strengthen lasting memories...",
   },
   {
     icon: "alzheimer" as const,
     title: "Why do some memories fade?",
     description:
-      "We study how retrieval and forgetting reshape neural representations over time.",
-    href: "/research/memory-goal-cognition",
+      "...so we can understand why memories sometime fade in aging and dementia...",
   },
   {
     icon: "mental-health" as const,
     title: "How can memory go awry?",
     description:
-      "We ask how sticky-memory mechanisms fail in memory loss and mental health disorders.",
-    href: "/research/emotion-decision-making",
+      "...and so we can understand why memories sometimes go awry in mental health disorders. ",
   },
 ];
 ---
@@ -53,7 +50,7 @@ const bigQuestions = [
 <BaseLayout>
   <Hero
     headline="What makes memories sticky?"
-    subheadline="We study the mental computations that encode, strengthen, and retrieve memories — and how those processes go awry in memory loss and mental health disorders."
+    subheadline="We study the mental computations that encode, strengthen, and retrieve memories — and how those processes fail in memory loss and mental health disorders."
     ctaText="Explore our Research"
     ctaHref={withBase("/research")}
     image="/images/banner_picture_monet.jpg"
@@ -75,7 +72,6 @@ const bigQuestions = [
             icon={q.icon}
             title={q.title}
             description={q.description}
-            href={q.href}
           />
         ))
       }
