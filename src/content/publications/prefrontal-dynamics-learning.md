@@ -1,12 +1,15 @@
 ---
 title: "Coordinated prefrontal dynamics sustain task-state representations during learning"
 authors:
-  - "Maher, C."
   - "Qasim, S.E."
-  - "Tostaeva, G."
-  - "Nunez Martinez, L."
   - "Panov, F."
-  - "Radulescu, A."
+  - "Nunez, L.M."
+  - "Rhone, A.E."
+  - "Kawasaki, H."
+  - "Kovach, C."
+  - "Garcia, C."
+  - "Dlouhy, B."
+  - "Gu, X."
   - "Saez, I."
 journal: "bioRxiv"
 year: 2026
