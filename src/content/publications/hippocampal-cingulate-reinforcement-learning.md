@@ -13,6 +13,7 @@ authors:
   - "Saez, I."
 journal: "bioRxiv"
 year: 2026
+link: "https://www.biorxiv.org/content/10.64898/2026.09.10.750374v1"
 featured: false
 tags:
   - "hippocampus"
