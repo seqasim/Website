@@ -118,7 +118,7 @@ alumni: false
 ```
 
 Field rules:
-- `role`: must be one of `PI`, `Postdoc`, `PhD Student`, `Undergraduate`, `Staff`, `Alum`. To add a new role, first add it to the `role` enum in `src/content.config.ts` and to `roleGroups` in `src/pages/people/index.astro`.
+- `role`: must be one of `PI`, `Postdoc`, `PhD Student`, `Master's Student`, `Undergraduate`, `Staff`, `Alum`. To add a new role, first add it to the `role` enum in `src/content.config.ts` and to `roleGroups` in `src/pages/people/index.astro`.
 - `photo`: optional. Put the image in `public/images/people/` and reference it as `/images/people/<file>` (leading slash). If omitted, a placeholder initial is shown.
 - `photoPosition`: optional CSS `object-position` for cropping adjustments, e.g. `"center 35%"` if the top of the head is cut off. Default is `"center center"`.
 - `email`: optional; omit the line if none.
