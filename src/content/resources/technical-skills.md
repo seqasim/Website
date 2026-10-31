@@ -14,7 +14,6 @@ This page collects educational resources — not a complete curriculum. Start wi
 - [FieldTrip](https://www.fieldtriptoolbox.org/) — MATLAB toolbox for electrophysiology
 - Spectral / oscillatory methods: [FOOOF](https://fooof-tools.github.io/fooof/), [ByCycle](https://bycycle-tools.github.io/bycycle/)
 - [Tom Donoghue's Electrophysiology & Open Science Resources](https://tomdonoghue.github.io/resources) — curated lists of electrophysiology software, open datasets, single-unit tools, DSP visualizers, and project templates
-- Spike sorting: lab-preferred pipelines and tutorials *(add links as standards settle)*
 
 ### Introductory video lectures (EEG & time-frequency analysis)
 
@@ -55,15 +54,9 @@ This page collects educational resources — not a complete curriculum. Start wi
 ## Computational modeling & statistics
 
 - [Neuromatch Academy](https://neuromatch.io/) — computational neuroscience and ML courses
-- Reinforcement learning primers *(add preferred textbooks / courses)*
-- GLMs and mixed-effects modeling for behavioral and neural data *(add preferred tutorials)*
 
 ## High-performance computing at Rutgers
 
 - [Rutgers Amarel](https://oarc.rutgers.edu/resources/amarel/) — cluster overview and getting an account
 - Linux / SSH basics for remote work
-- Slurm job scripts: start from OARC examples, then adapt lab templates once shared
-
----
-
-**How to add a resource:** edit `src/content/resources/technical-skills.md` and add a bullet with a short label and link under the relevant heading.
+- Slurm job scripts: start from OARC examples and lab templates
