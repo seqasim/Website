@@ -128,6 +128,39 @@ News posts do not include dates.
 
 ---
 
+## Lab Wiki / Resources
+
+**Location:** `src/content/resources/`
+
+Handbook chapters appear on `/resources` and `/resources/<filename-slug>`.
+
+```markdown
+---
+title: "Onboarding & First Week Checklist"
+summary: "Short description for the hub card."
+category: "Getting Started"
+order: 1
+icon: "learning"
+---
+
+Chapter body in Markdown. Use headings, lists, and links freely.
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `title` | Yes | Chapter title |
+| `summary` | Yes | Short description for hub cards |
+| `category` | Yes | Group label (e.g. Getting Started, Pedagogy & Literature) |
+| `order` | Yes | Sort order (lower = first) |
+| `icon` | No | Brain icon name (`learning`, `cognition`, `neural-network`, etc.) |
+| Body | Yes | Full chapter (Markdown) |
+
+**Campus & lab portal links** (GitHub, Amarel, CITI/IRB, BHI) live in the `labQuickLinks` array in `src/lib/site.ts` — edit that array to add or change hub links.
+
+**Reading list & tutorials:** edit `foundational-literature.md` and `technical-skills.md` to add papers and educational links under the existing headings.
+
+---
+
 ## Open Positions
 
 **Location:** `src/content/positions/`

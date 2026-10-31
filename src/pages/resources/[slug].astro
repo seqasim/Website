@@ -1,0 +1,119 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import { getCollection, render } from "astro:content";
+import { byOrder, withBase } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const entries = (await getCollection("resources")).sort(byOrder);
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      chapters: entries,
+      prev: index > 0 ? entries[index - 1] : null,
+      next: index < entries.length - 1 ? entries[index + 1] : null,
+    },
+  }));
+}
+
+const { entry, chapters, prev, next } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={`${entry.data.title} | Qasim Lab`}
+  description={entry.data.summary}
+>
+  <Section>
+    <div class="grid gap-10 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-14">
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <a
+          href={withBase("/resources")}
+          class="mb-6 inline-block text-sm font-medium text-muted hover:text-accent"
+        >
+          &larr; Back to Resources
+        </a>
+        <p class="mb-3 text-xs font-medium uppercase tracking-wider text-ink">
+          Chapters
+        </p>
+        <nav aria-label="Wiki chapters">
+          <ul class="space-y-1 border-l border-border">
+            {
+              chapters.map((chapter) => {
+                const active = chapter.id === entry.id;
+                return (
+                  <li>
+                    <a
+                      href={withBase(`/resources/${chapter.id}`)}
+                      class:list={[
+                        "block border-l-2 py-2 pl-4 text-sm transition-colors",
+                        active
+                          ? "-ml-px border-ink font-medium text-ink"
+                          : "border-transparent text-muted hover:text-foreground",
+                      ]}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {chapter.data.title}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </nav>
+      </aside>
+
+      <article>
+        <p class="mb-2 text-sm font-medium uppercase tracking-wider text-ink">
+          {entry.data.category}
+        </p>
+        <h1 class="font-display text-4xl font-semibold text-foreground md:text-5xl">
+          {entry.data.title}
+        </h1>
+        <p class="mt-4 max-w-2xl text-lg text-muted">{entry.data.summary}</p>
+        <div class="prose-content mt-10 max-w-3xl">
+          <Content />
+        </div>
+
+        <nav
+          class="mt-14 grid gap-4 border-t border-border pt-8 sm:grid-cols-2"
+          aria-label="Previous and next chapters"
+        >
+          {
+            prev ? (
+              <a
+                href={withBase(`/resources/${prev.id}`)}
+                class="rounded-xl border border-border bg-background p-5 shadow-sm transition-all duration-150 hover:shadow-md"
+              >
+                <p class="text-xs font-medium uppercase tracking-wider text-muted">
+                  Previous
+                </p>
+                <p class="mt-1 font-display text-lg font-semibold text-foreground">
+                  {prev.data.title}
+                </p>
+              </a>
+            ) : (
+              <div />
+            )
+          }
+          {
+            next ? (
+              <a
+                href={withBase(`/resources/${next.id}`)}
+                class="rounded-xl border border-border bg-background p-5 text-right shadow-sm transition-all duration-150 hover:shadow-md sm:justify-self-end sm:text-right"
+              >
+                <p class="text-xs font-medium uppercase tracking-wider text-muted">
+                  Next
+                </p>
+                <p class="mt-1 font-display text-lg font-semibold text-foreground">
+                  {next.data.title}
+                </p>
+              </a>
+            ) : null
+          }
+        </nav>
+      </article>
+    </div>
+  </Section>
+</BaseLayout>

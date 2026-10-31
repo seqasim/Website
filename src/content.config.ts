@@ -91,6 +91,31 @@ const positions = defineCollection({
   }),
 });
 
+const resources = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/resources" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    category: z.string(),
+    order: z.number().default(0),
+    icon: z
+      .enum([
+        "neuron",
+        "cognition",
+        "mental-health",
+        "alzheimer",
+        "neural-network",
+        "neurology",
+        "intellect",
+        "wise",
+        "learning",
+        "brain",
+        "focus",
+      ])
+      .optional(),
+  }),
+});
+
 export const collections = {
   research,
   publications,
@@ -98,4 +123,5 @@ export const collections = {
   people,
   news,
   positions,
+  resources,
 };

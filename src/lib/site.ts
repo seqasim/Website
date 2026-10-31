@@ -49,8 +49,38 @@ export const navLinks = [
   { label: "Publications", href: "/publications" },
   { label: "People", href: "/people" },
   { label: "News", href: "/news" },
+  { label: "Resources", href: "/resources" },
   { label: "Join", href: "/join" },
   { label: "Contact", href: "/contact" },
+] as const;
+
+/** Campus and lab portals shown on the Resources hub. */
+export const labQuickLinks = [
+  {
+    title: "Lab GitHub",
+    description: "Shared analysis pipelines, experiment code, and lab repositories.",
+    url: "https://github.com/seqasim",
+  },
+  {
+    title: "Rutgers Amarel HPC",
+    description: "Office of Advanced Research Computing cluster documentation and access.",
+    url: "https://oarc.rutgers.edu/resources/amarel/",
+  },
+  {
+    title: "CITI & Human Subjects Training",
+    description: "Required CITI modules for human subjects research at Rutgers.",
+    url: "https://research.rutgers.edu/researcher-support/research-compliance/human-subjects-protection-program-irb/training-and-education",
+  },
+  {
+    title: "Rutgers eIRB",
+    description: "Submit and manage IRB protocols through the Rutgers research portal.",
+    url: "https://research.rutgers.edu/researcher-support/research-compliance/human-subjects-protection-program-irb",
+  },
+  {
+    title: "Brain Health Institute",
+    description: "Rutgers BHI community, seminars, and neuroscience resources.",
+    url: "https://brainhealthinstitute.rutgers.edu/",
+  },
 ] as const;
 
 /** Build a URL that respects Astro's base path (root `/` on custom domain). */
