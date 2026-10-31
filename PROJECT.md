@@ -32,6 +32,8 @@ A minimal, editorial, science-forward static website for the Qasim Lab at Rutger
 | `/people` | People | `src/content/people/` |
 | `/news` | News index | `src/content/news/` |
 | `/news/[slug]` | News detail | Individual news `.md` files |
+| `/resources` | Lab wiki hub | `src/content/resources/` + `labQuickLinks` in `site.ts` |
+| `/resources/[slug]` | Wiki chapter | Individual resources `.md` files |
 | `/join` | Join the Lab | `src/content/positions/` + static copy |
 | `/contact` | Contact | `src/lib/site.ts` config |
 
@@ -48,7 +50,8 @@ Website/
 │   │   ├── publications/
 │   │   ├── people/
 │   │   ├── news/
-│   │   └── positions/
+│   │   ├── positions/
+│   │   └── resources/
 │   ├── layouts/                   # Page layouts
 │   ├── lib/                       # Site config, helpers (withBase)
 │   ├── pages/                     # Astro routes

@@ -1,6 +1,6 @@
 ---
 name: updating-qasim-lab-site
-description: Add, edit, or remove Qasim Lab website content — research areas, publications, lab members (including moving members to alumni), news posts, and job postings. Use when updating this Astro site's Markdown content, when the user mentions adding a paper, person, news item, announcement, or position, or when moving a lab member to Alumni.
+description: Add, edit, or remove Qasim Lab website content — research areas, publications, lab members (including moving members to alumni), news posts, job postings, and lab wiki / resources chapters. Use when updating this Astro site's Markdown content, when the user mentions adding a paper, person, news item, announcement, position, wiki page, onboarding guide, reading list entry, or tutorial link, or when moving a lab member to Alumni.
 ---
 
 # Updating the Qasim Lab Website
@@ -25,6 +25,7 @@ This site is a static Astro site. All content lives in Markdown files under `src
 | News | `src/content/news/` | Yes | `order` ascending |
 | Media coverage | `src/content/media/` | No | `order` ascending |
 | Positions | `src/content/positions/` | No | file order; `open: true` shown |
+| Lab wiki / resources | `src/content/resources/` | Yes | `order` ascending |
 
 ---
 
@@ -199,6 +200,32 @@ Optional note about which paper the coverage refers to.
 
 - `order`: lower numbers appear first.
 - To remove: delete the file.
+
+---
+
+## Add or edit a lab wiki chapter (resources)
+
+Create `src/content/resources/<slug>.md` (filename becomes `/resources/<slug>`):
+
+```markdown
+---
+title: "Chapter title"
+summary: "One-sentence description for the hub card."
+category: "Getting Started"
+order: 5
+icon: "learning"
+---
+
+Markdown body. For reading lists and tutorials, use `##` topic headings and bullet lists with links.
+```
+
+- `category`: free-text grouping label shown on cards and chapter pages.
+- `icon`: optional Adobe Stock brain-icon name (same set as research).
+- Hub cards and sidebar order follow `order` ascending.
+- Campus/lab portal links on `/resources` are **not** Markdown — edit `labQuickLinks` in [`src/lib/site.ts`](../../../src/lib/site.ts).
+- To extend the reading list or tutorials, edit `foundational-literature.md` or `technical-skills.md` in place.
+
+To remove: delete the file.
 
 ---
 
